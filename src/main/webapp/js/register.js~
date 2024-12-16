@@ -1,0 +1,25 @@
+let currentStep = 1;
+
+function nextStep() {
+    if (currentStep === 1 && validateStep1()) {
+        document.getElementById('step-1').style.display = 'none';
+        document.getElementById('step-2').style.display = 'block';
+        currentStep = 2;
+    }
+}
+
+function prevStep() {
+    document.getElementById('step-2').style.display = 'none';
+    document.getElementById('step-1').style.display = 'block';
+    currentStep = 1;
+}
+
+function validateStep1() {
+    const password = document.getElementById('password').value;
+    const rePassword = document.getElementById('rePassword').value;
+    if (password !== rePassword) {
+        alert('Mật khẩu nhập lại không khớp!');
+        return false;
+    }
+    return true;
+}
