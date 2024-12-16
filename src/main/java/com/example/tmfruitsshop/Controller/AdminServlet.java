@@ -28,11 +28,17 @@ public class AdminServlet extends HttpServlet {
             case "user":
                 jspPath = "/View/admin/manageUser.jsp";
                 break;
+            case "addUser" :
+                jspPath = "/View/admin/addUser.jsp";
+                break;
             case "product":
                 List<Product> products = adminService.getAllProduct();
                 req.setAttribute("products", products);
                 jspPath = "/View/admin/manageProduct.jsp";
                 break;
+                case "addProduct" :
+                    jspPath = "/View/admin/addProduct.jsp";
+                    break;
             case "order":
                 jspPath = "/View/admin/manageOrder.jsp";
                 break;

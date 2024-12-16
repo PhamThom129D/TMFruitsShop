@@ -81,4 +81,24 @@ public class AdminService implements InAdminService {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void addProduct(Product product) {
+        String query = "Insert into products(productName, stock, price, urlImage, type, description) values (?,?,?,?,?,?)";
+        try (Connection conn = ConnectDatabase.getConnection();
+             PreparedStatement prep = conn.prepareStatement(query)
+        ) {
+            prep.setString(1, product.getProductName());
+            prep.setInt(2, product.getQuantity());
+            prep.setInt(3, product.getPrice());
+            prep.setString(4, product.getUrlImage());
+            prep.setString(5, product.getType());
+            prep.setString(6, product.getDescription());
+            prep.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

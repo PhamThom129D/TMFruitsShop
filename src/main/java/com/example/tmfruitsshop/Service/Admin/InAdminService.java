@@ -9,4 +9,5 @@ public interface InAdminService {
     List<Product> getAllProduct();
     Product getProductById(int id);
     void updateProduct(Product product);
+    void addProduct(Product product);
 }
