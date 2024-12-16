@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface InUserService {
 
-    public User login(HttpServletRequest req,String email, String password);
+    User login(HttpServletRequest req,String email, String password);
+    void register(User user);
 
 }

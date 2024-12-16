@@ -24,15 +24,13 @@ public class User {
         this.urlAvatar = urlAvatar;
         this.status = status;
     }
-    public User(String username, String password, String email, String phonenumber, String role, String address, String urlAvatar, Boolean status) {
+    public User(String username, String password, String email, String phonenumber, String address, String urlAvatar) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.phonenumber = phonenumber;
-        this.role = role;
         this.address = address;
         this.urlAvatar = urlAvatar;
-        this.status = status;
     }
 
     public int getUserID() {

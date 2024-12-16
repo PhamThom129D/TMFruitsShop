@@ -57,7 +57,7 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    private void registerAction(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    private void registerAction(HttpServletRequest req, HttpServletResponse resp) {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         String username = req.getParameter("username");
@@ -66,7 +66,14 @@ public class UserServlet extends HttpServlet {
         String urlAvatar = req.getParameter("urlAvatar");
         User user = new User(username,password,email,phonenumber,address,urlAvatar);
         userService.register(user);
-        resp.sendRedirect("View/authenticate/login.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("View/authenticate/login.jsp");
+        try{
+            dispatcher.forward(req,resp);
+        }catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void loginAction(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
