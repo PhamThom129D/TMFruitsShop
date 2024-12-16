@@ -15,19 +15,16 @@
         <!-- Step 1 -->
         <div id="step-1" class="step">
             <div class="user-box">
-                <input type="email" id="email" name="email" required>
+                <input type="email" name="email" required>
                 <label>Email</label>
-                <span id="email-message" class="error-message"></span>
             </div>
             <div class="user-box">
                 <input type="password" id="password" name="password" required>
                 <label>Mật khẩu</label>
-                <span id="password-message" class="error-message"></span>
             </div>
             <div class="user-box">
                 <input type="password" id="rePassword" name="rePassword" required>
                 <label>Nhập lại mật khẩu</label>
-                <span id="rePassword-message" class="error-message"></span>
             </div>
             <button type="button" onclick="nextStep()">Tiếp tục</button>
         </div>
@@ -37,17 +34,14 @@
             <div class="user-box">
                 <input type="text" name="username" required>
                 <label>Tên người dùng</label>
-                <span id="username-message" class="error-message"></span>
             </div>
             <div class="user-box">
                 <input type="tel" name="phonenumber" required>
                 <label>Số điện thoại</label>
-                <span id="phone-message" class="error-message"></span>
             </div>
             <div class="user-box">
                 <input type="text" name="address" required>
                 <label>Địa chỉ</label>
-                <span id="address-message" class="error-message"></span>
             </div>
             <button type="submit">Đăng ký</button>
             <button type="button" onclick="prevStep()">Quay lại</button>
