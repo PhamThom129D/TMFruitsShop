@@ -26,10 +26,10 @@ public class UserServlet extends HttpServlet {
 
         switch (action) {
             case "redirectRegister" :
-                resp.sendRedirect("authenticate/register.jsp");
+                resp.sendRedirect("View/authenticate/register.jsp");
                 break;
             case "redirectLogin":
-                resp.sendRedirect("authenticate/login.jsp");
+                resp.sendRedirect("View/authenticate/login.jsp");
                 break;
         }
     }
@@ -47,7 +47,7 @@ public class UserServlet extends HttpServlet {
                 loginAction(req, resp);
                 break;
             default:
-                resp.sendRedirect("/authenticate/login.jsp");
+                resp.sendRedirect("View/authenticate/login.jsp");
                 break;
         }
     }
@@ -58,9 +58,17 @@ public class UserServlet extends HttpServlet {
         User user = userService.login(req, email, password);
         if (user == null) {
             System.out.println("lỗi");
-        } else {
-            RequestDispatcher dispatcher = req.getRequestDispatcher("/authenticate/home.jsp");
-            dispatcher.forward(req, resp);
+        } else if(user.getStatus()){
+            switch (user.getRole()) {
+                case "admin":
+                    req.getRequestDispatcher("View/admin/home.jsp").forward(req, resp);
+                    break;
+                case "user":
+                    req.getRequestDispatcher("View/user/home.jsp").forward(req, resp);
+                    break;
+            }
+        }else {
+            resp.sendRedirect("error.jsp");
         }
     }
 

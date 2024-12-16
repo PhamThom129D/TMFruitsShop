@@ -55,13 +55,20 @@ public class UserServlet extends HttpServlet {
     private void loginAction(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-
         User user = userService.login(req, email, password);
         if (user == null) {
             System.out.println("lỗi");
-        } else {
-            RequestDispatcher dispatcher = req.getRequestDispatcher("/authenticate/home.jsp");
-            dispatcher.forward(req, resp);
+        } else if(user.getStatus()){
+            switch (user.getRole()) {
+                case "admin":
+                    req.getRequestDispatcher("/admin/home.jsp").forward(req, resp);
+                    break;
+                case "user":
+                    req.getRequestDispatcher("/user/home.jsp").forward(req, resp);
+                    break;
+            }
+        }else {
+            resp.sendRedirect("error.jsp");
         }
     }
 
