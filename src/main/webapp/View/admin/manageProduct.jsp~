@@ -41,7 +41,8 @@
                     <td>${product.description}</td>
                     <td>
                         <a href="/productAdmin?action=update&id=${product.productID}">Sửa thông tin</a><br>
-                        <a href="/productAdmin?action=delete&id=${product.productID}">Xoá sản phẩm</a>
+                        <a href="/productAdmin?action=delete&id=${product.productID}">Xoá sản phẩm</a><br>
+                        <a href="/productAdmin?action=view&id=${product.productID}">Chi tiết sản phẩm</a>
                     </td>
                 </tr>
             </c:forEach>

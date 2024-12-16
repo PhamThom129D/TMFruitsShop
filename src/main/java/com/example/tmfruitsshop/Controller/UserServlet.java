@@ -1,10 +1,9 @@
 package com.example.tmfruitsshop.Controller;
 
 import com.example.tmfruitsshop.Model.User;
-import com.example.tmfruitsshop.Service.InUserService;
-import com.example.tmfruitsshop.Service.UserService;
+import com.example.tmfruitsshop.Service.User.InUserService;
+import com.example.tmfruitsshop.Service.User.UserService;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

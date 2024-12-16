@@ -1,4 +1,4 @@
-package com.example.tmfruitsshop.Service;
+package com.example.tmfruitsshop.Service.User;
 
 import com.example.tmfruitsshop.Model.User;
 
