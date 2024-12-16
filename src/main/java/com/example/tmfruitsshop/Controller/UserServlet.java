@@ -57,14 +57,13 @@ public class UserServlet extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         User user = userService.login(req, email, password);
+        HttpSession session = req.getSession();;
         if (user == null) {
-            System.out.println("lỗi");
-        } else if(user.getStatus()){
+            session.setAttribute("errorMessage", "Sai mật khẩu hoặc tài khoản không tồn tại.");
+            resp.sendRedirect("View/authenticate/login.jsp");
+        } else if (user.getStatus()) {
             System.out.println(user);
-
-            HttpSession session = req.getSession();
             session.setAttribute("user", user);
-
             switch (user.getRole()) {
                 case "admin":
                     req.getRequestDispatcher("View/admin/homeAdmin.jsp").forward(req, resp);
@@ -73,8 +72,9 @@ public class UserServlet extends HttpServlet {
                     req.getRequestDispatcher("View/user/homeUser.jsp").forward(req, resp);
                     break;
             }
-        }else {
-            resp.sendRedirect("error.jsp");
+        } else {
+            session.setAttribute("errorMessage", "Tài khoản của bạn đã bị khóa.");
+            resp.sendRedirect("View/authenticate/login.jsp");
         }
     }
 

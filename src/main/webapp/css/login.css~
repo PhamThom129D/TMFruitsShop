@@ -137,5 +137,5 @@ a {
     text-align: left;
     font-size: 15px;
     color: red;
-    font-weight: bold;
+    
 }

@@ -20,6 +20,21 @@
             <label>Mật khẩu</label>
             <img id="toggle-password" src="/images/eye-closed.png" onclick="togglePassword()">
         </div>
+
+        <div>
+            <span id="error-message" class="error-message">
+                <%
+                    String errorMessage = (String) session.getAttribute("errorMessage");
+                    if (errorMessage != null) {
+                %>
+                    <%= errorMessage %>
+                <%
+                        session.removeAttribute("errorMessage");
+                    }
+                %>
+            </span>
+        </div>
+
         <button type="submit" name="submit">Đăng nhập</button>
     </form>
     <a href="/login?action=redirectRegister" class="sign-up-btn" methods="GET">
@@ -40,5 +55,6 @@
             toggleIcon.src = "/images/eye-closed.png";
         }
     }
+
 </script>
 </html>
