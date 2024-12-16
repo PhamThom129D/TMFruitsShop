@@ -7,5 +7,6 @@ import java.util.List;
 public interface InAdminService {
 
     List<Product> getAllProduct();
-    void deleteProduct(int productID);
+    Product getProductById(int id);
+    void updateProduct(Product product);
 }

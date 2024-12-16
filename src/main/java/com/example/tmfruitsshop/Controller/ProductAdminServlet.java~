@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 import static com.example.tmfruitsshop.Controller.AdminServlet.adminService;
 
@@ -22,22 +21,48 @@ public class ProductAdminServlet extends HttpServlet {
             action ="";
         }
         switch (action){
-            case "delete" :
-                deleteProductAction(req,resp);
-                break;
-            default:
-                showAllProduct(req,resp);
+            case "update" :
+                showUpdateProductForm(req,resp);
                 break;
         }
     }
 
-    private void showAllProduct(HttpServletRequest req, HttpServletResponse resp) {
-        List<Product> products = adminService.getAllProduct();
-        req.setAttribute("products",products);
+    private void showUpdateProductForm(HttpServletRequest req, HttpServletResponse resp) {
+        int id = Integer.parseInt(req.getParameter("id"));
+        Product product = adminService.getProductById(id);
+        req.setAttribute("product",product);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/View/admin/updateProduct.jsp");
+        try {
+            dispatcher.forward(req,resp);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void deleteProductAction(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        int productID = Integer.parseInt(req.getParameter("id"));
-        adminService.deleteProduct(productID);
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String action = req.getParameter("action");
+        if(action==null){
+            action ="";
+        }
+        switch (action){
+            case "update" :
+                updateProductAction(req,resp);
+                break;
+        }
+    }
+
+    private void updateProductAction(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String productName = req.getParameter("name");
+        int price = Integer.parseInt(req.getParameter("price"));
+        String urlImage = req.getParameter("image");
+        int quantity = Integer.parseInt(req.getParameter("quantity"));
+        String description = req.getParameter("description");
+        String type = req.getParameter("type");
+        int id = Integer.parseInt(req.getParameter("id"));
+        System.out.println(type);
+        Product product = new Product(id,productName,quantity,price,urlImage,type,description);
+        adminService.updateProduct(product);
+        resp.sendRedirect("/ContentServlet");
     }
 }

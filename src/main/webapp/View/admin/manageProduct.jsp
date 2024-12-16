@@ -14,12 +14,12 @@
 <body>
 <div>
     <h1>Quản lý sản phẩm</h1>
-    <form action="/productAdmin?action=search" method="post">
+    <form action="/productAdmin?action=search" method="get">
         <input type="text" name="keyword" placeholder="Nhập từ khóa tìm kiếm">
         <input type="submit" value="Tìm kiếm"></form>
     </form>
     <div>
-        <table>
+        <table border="1">
             <tr>
                 <td>STT</td>
                 <td>Ảnh</td>
@@ -40,8 +40,7 @@
                     <td>${product.type}</td>
                     <td>${product.description}</td>
                     <td>
-                        <a href="/productAdmin?action=update&id=${product.productID}">Sửa thông tin</a><br>
-                        <a href="/productAdmin?action=delete&id=${product.productID}">Xoá sản phẩm</a>
+                        <a href="/productAdmin?action=update&id=${product.productID}" methods="GET">Sửa thông tin</a><br>
                     </td>
                 </tr>
             </c:forEach>
