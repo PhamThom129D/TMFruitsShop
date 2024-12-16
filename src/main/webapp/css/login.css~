@@ -42,7 +42,7 @@ html {
     max-width: 350px;
     padding: 12px 0;
     font-size: 20px;
-    color: rgba(0, 0, 0, 0.85);
+    color: #000000;
     margin-bottom: 10px;
     border: none;
     border-bottom: 2px solid #ccc;

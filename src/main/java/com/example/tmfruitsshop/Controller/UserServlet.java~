@@ -1,9 +1,10 @@
 package com.example.tmfruitsshop.Controller;
 
 import com.example.tmfruitsshop.Model.User;
-import com.example.tmfruitsshop.Service.User.InUserService;
-import com.example.tmfruitsshop.Service.User.UserService;
+import com.example.tmfruitsshop.Service.InUserService;
+import com.example.tmfruitsshop.Service.UserService;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,9 +22,6 @@ public class UserServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
-        req.setCharacterEncoding("UTF-8");
-        resp.setCharacterEncoding("UTF-8");
-        resp.setContentType("text/html; charset=UTF-8");
         String action = req.getParameter("action");
         if (action == null) action = "";
 
@@ -34,19 +32,11 @@ public class UserServlet extends HttpServlet {
             case "redirectLogin":
                 resp.sendRedirect("View/authenticate/login.jsp");
                 break;
-            case "logout":
-                HttpSession session = req.getSession();
-                session.invalidate();
-                resp.sendRedirect("View/authenticate/login.jsp");
-                break;
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException,IOException {
-        req.setCharacterEncoding("UTF-8");
-        resp.setCharacterEncoding("UTF-8");
-        resp.setContentType("text/html; charset=UTF-8");
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
@@ -67,7 +57,7 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    private void registerAction(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    private void registerAction(HttpServletRequest req, HttpServletResponse resp) {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         String username = req.getParameter("username");
@@ -76,7 +66,14 @@ public class UserServlet extends HttpServlet {
         String urlAvatar = req.getParameter("urlAvatar");
         User user = new User(username,password,email,phonenumber,address,urlAvatar);
         userService.register(user);
-        resp.sendRedirect("View/authenticate/login.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("View/authenticate/login.jsp");
+        try{
+            dispatcher.forward(req,resp);
+        }catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void loginAction(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
