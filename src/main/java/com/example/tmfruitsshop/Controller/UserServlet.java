@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/login")
@@ -59,12 +60,17 @@ public class UserServlet extends HttpServlet {
         if (user == null) {
             System.out.println("lỗi");
         } else if(user.getStatus()){
+            System.out.println(user);
+
+            HttpSession session = req.getSession();
+            session.setAttribute("user", user);
+
             switch (user.getRole()) {
                 case "admin":
-                    req.getRequestDispatcher("View/admin/home.jsp").forward(req, resp);
+                    req.getRequestDispatcher("View/admin/homeAdmin.jsp").forward(req, resp);
                     break;
                 case "user":
-                    req.getRequestDispatcher("View/user/home.jsp").forward(req, resp);
+                    req.getRequestDispatcher("View/user/homeUser.jsp").forward(req, resp);
                     break;
             }
         }else {
