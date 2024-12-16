@@ -38,8 +38,8 @@
                 <div class="product-item">
                     <img src="${product.urlImage}" alt="Táo">
                     <h3>${product.productName}</h3>
-                    <p class="price">${(product.price)}</p>
-                    <button class="add-to-cart" data-name="${product.productName}" data-price="${(product.price)}">Thêm vào giỏ</button>
+                    <p class="price">${formatCurrency(product.price)}</p>
+                    <button class="add-to-cart" data-name="${product.productName}" data-price="${formatCurrency(product.price)}">Thêm vào giỏ</button>
                 </div>
             </c:forEach>
 
@@ -84,11 +84,11 @@
         let cartContent = "";
         let total = 0;
         cart.forEach(item => {
-            cartContent += `<p>${item.name} - ${item.quantity} x ${(item.price)}</p>`;
+            cartContent += `<p>${item.name} - ${item.quantity} x ${formatCurrency(item.price)}</p>`;
             total += item.price * item.quantity;
         });
         $("#cart-items").html(cartContent);
-        $("#total").html("Tổng: " + (total));
+        $("#total").html("Tổng: " + formatCurrency(total));
         $("#view-cart").text(`Xem Giỏ Hàng (${cart.length})`);
     }
 
