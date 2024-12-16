@@ -67,7 +67,7 @@ public class UserService implements InUserService {
             preparedStatement.setString(4,user.getPhonenumber());
             preparedStatement.setString(5,user.getAddress());
             preparedStatement.setString(6,user.getUrlAvatar());
-            preparedStatement.execute();
+            preparedStatement.executeQuery();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {

@@ -72,11 +72,28 @@ function validateStep2() {
     const username = document.querySelector('input[name="username"]').value;
     const phonenumber = document.querySelector('input[name="phonenumber"]').value;
     const address = document.querySelector('input[name="address"]').value;
+    const urlAvatar = document.getElementById('urlAvatar').value.trim();
 
     // Regex cho các trường Step 2
     const usernameRegex = /^[a-zA-Z0-9_]{3,15}$/;
     const phoneRegex = /^(0[3-9]{1}[0-9]{8})$/;
     const addressRegex = /^.{5,100}$/;
+
+    // Kiểm tra URL ảnh
+    if (!validateImageUrl(urlAvatar)) {
+        const urlAvatarField = document.getElementById('urlAvatar');
+        const urlAvatarMessage = document.getElementById('urlAvatar-message');
+        urlAvatarField.style.borderColor = 'red';
+        urlAvatarMessage.textContent = 'Định dạng URL ảnh không hợp lệ!';
+        urlAvatarMessage.style.color = 'red';
+        return false;
+    } else {
+        const urlAvatarField = document.getElementById('urlAvatar');
+        const urlAvatarMessage = document.getElementById('urlAvatar-message');
+        urlAvatarField.style.borderColor = 'green';
+        urlAvatarMessage.textContent = 'URL ảnh hợp lệ';
+        urlAvatarMessage.style.color = 'green';
+    }
 
     // Kiểm tra tên người dùng
     const usernameField = document.querySelector('input[name="username"]');
@@ -123,6 +140,18 @@ function validateStep2() {
     return true;
 }
 
+function validateImageUrl(url) {
+    const imageUrlRegex = /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp))$/;
+    return imageUrlRegex.test(url);
+}
+
 function validateForm() {
-    return validateStep2();
+    function validateForm() {
+        if (validateStep2()) {
+            alert("Đăng ký thành công. Mời đăng nhập lại!");
+            return true;
+        }
+        return false;
+    }
+
 }

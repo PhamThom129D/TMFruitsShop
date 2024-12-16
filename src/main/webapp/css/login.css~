@@ -42,7 +42,7 @@ html {
     max-width: 350px;
     padding: 12px 0;
     font-size: 20px;
-    color: #b49c9c;
+    color: #000000;
     margin-bottom: 10px;
     border: none;
     border-bottom: 2px solid #ccc;
@@ -62,7 +62,7 @@ html {
     left: 0;
     padding: 10px 0;
     font-size: 18px;
-    color: #000000;
+    color: #002525;
     pointer-events: none;
     transition: .5s;
 }
@@ -137,5 +137,5 @@ a {
     text-align: left;
     font-size: 15px;
     color: red;
-    
+    font-weight: bold;
 }
