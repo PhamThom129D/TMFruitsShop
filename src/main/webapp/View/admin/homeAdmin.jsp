@@ -25,7 +25,7 @@
         <ul class="user-settings">
             <li>profile</li>
             <li>Setting</li>
-            <li>Logout</li>
+            <li><a href="/login?action=logout">Đăng xuất</a></li>
         </ul>
     </div>
     <div class="menu">
@@ -33,7 +33,9 @@
             <li>
                 <span>User and Roles</span>
                 <ul>
-                    <li> Thêm người dùng</li>
+                    <li>
+                        <button onclick="loadContent('addUser')">Thêm người dùng</button>
+                    </li>
                     <li>
                         <button onclick="loadContent('user')">Quản lý người dùng</button>
                     </li>
@@ -42,7 +44,9 @@
             <li>
                 <span>Manage Product</span>
                 <ul>
-                    <li>Thêm sản phẩm</li>
+                    <li>
+                        <button onclick="loadContent('addProduct')">Thêm sản phẩm</button>
+                    </li>
                     <li>
                         <button onclick="loadContent('product')">Quản lý sản phẩm</button>
                     </li>
@@ -66,14 +70,15 @@
         $.ajax({
             url : 'ContentServlet',
             type : 'GET',
-            data : {page : page},
+            data : { page : page },
             success : function (resp) {
                 $('.data-container').html(resp);
             },
             error : function () {
                 $('.data-container').html('<p>Lỗi khi tải nội dung</p>');
             }
-        })
+        });
     }
+
 </script>
 </html>

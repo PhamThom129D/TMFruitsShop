@@ -1,10 +1,9 @@
 package com.example.tmfruitsshop.Controller;
 
 import com.example.tmfruitsshop.Model.User;
-import com.example.tmfruitsshop.Service.InUserService;
-import com.example.tmfruitsshop.Service.UserService;
+import com.example.tmfruitsshop.Service.User.InUserService;
+import com.example.tmfruitsshop.Service.User.UserService;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,6 +21,9 @@ public class UserServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html; charset=UTF-8");
         String action = req.getParameter("action");
         if (action == null) action = "";
 
@@ -32,11 +34,19 @@ public class UserServlet extends HttpServlet {
             case "redirectLogin":
                 resp.sendRedirect("View/authenticate/login.jsp");
                 break;
+            case "logout":
+                HttpSession session = req.getSession();
+                session.invalidate();
+                resp.sendRedirect("View/authenticate/login.jsp");
+                break;
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException,IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html; charset=UTF-8");
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
