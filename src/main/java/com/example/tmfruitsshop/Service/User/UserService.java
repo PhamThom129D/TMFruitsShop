@@ -1,6 +1,7 @@
-package com.example.tmfruitsshop.Service;
+package com.example.tmfruitsshop.Service.User;
 
 import com.example.tmfruitsshop.Model.User;
+import com.example.tmfruitsshop.Service.ConnectDatabase;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
