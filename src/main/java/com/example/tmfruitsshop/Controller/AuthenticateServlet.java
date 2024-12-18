@@ -5,6 +5,7 @@ import com.example.tmfruitsshop.Service.Admin.AdminService;
 import com.example.tmfruitsshop.Service.Admin.InAdminService;
 import com.example.tmfruitsshop.Service.User.InUserService;
 import com.example.tmfruitsshop.Service.User.UserService;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +16,7 @@ import java.io.IOException;
 
 @WebServlet("/login")
 public class AuthenticateServlet extends HttpServlet {
+    public final static InAdminService adminService = new AdminService();
     private static final InUserService userService = new UserService();
 
     @Override
@@ -29,7 +31,7 @@ public class AuthenticateServlet extends HttpServlet {
         if (action == null) action = "";
 
         switch (action) {
-            case "redirectRegister" :
+            case "redirectRegister":
                 resp.sendRedirect("View/authenticate/register.jsp");
                 break;
             case "redirectLogin":
@@ -44,7 +46,7 @@ public class AuthenticateServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException,IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
@@ -60,7 +62,7 @@ public class AuthenticateServlet extends HttpServlet {
                 loginAction(req, resp);
                 break;
             case "register":
-                registerAction(req,resp);
+                registerAction(req, resp);
                 break;
             default:
                 resp.sendRedirect("View/authenticate/login.jsp");
@@ -75,16 +77,16 @@ public class AuthenticateServlet extends HttpServlet {
         String phonenumber = req.getParameter("phonenumber");
         String address = req.getParameter("address");
         String urlAvatar = req.getParameter("urlAvatar");
-        User user = new User(username,password,email,phonenumber,address,urlAvatar);
+        User user = new User(username, password, email, phonenumber, address, urlAvatar);
         userService.register(user);
         resp.sendRedirect("View/authenticate/login.jsp");
     }
-public final static InAdminService adminService = new AdminService();
+
     private void loginAction(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         User user = userService.login(req, email, password);
-        HttpSession session = req.getSession();;
+        HttpSession session = req.getSession();
         if (user == null) {
             session.setAttribute("errorMessage", "Sai mật khẩu hoặc tài khoản không tồn tại.");
             resp.sendRedirect("View/authenticate/login.jsp");

@@ -10,7 +10,6 @@
 
 </head>
 <body>
-<div class="container">
     <div class="header">
         <c:if test="${sessionScope.user != null}">
             <ul class="user-info">
@@ -28,57 +27,13 @@
             <li><a href="/login?action=logout">Đăng xuất</a></li>
         </ul>
     </div>
-    <div class="menu">
-        <ul>
-            <li>
-                <span>User and Roles</span>
-                <ul>
-                    <li>
-                        <button onclick="loadContent('addUser')">Thêm người dùng</button>
-                    </li>
-                    <li>
-                        <button onclick="loadContent('user')">Quản lý người dùng</button>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <span>Manage Product</span>
-                <ul>
-                    <li>
-                        <button onclick="loadContent('addProduct')">Thêm sản phẩm</button>
-                    </li>
-                    <li>
-                        <button onclick="loadContent('product')">Quản lý sản phẩm</button>
-                    </li>
-                </ul>
-            </li>
-
-        </ul>
-    </div>
-    <div class="main">
-        <div class="detail-container">
-            <h2> Nội dung </h2>
-        </div>
-        <div class="data-container">
-
-        </div>
-    </div>
+<div>
+    <ul class="menu">
+        <li><a href="/ContentServlet?action=redirectUser">Quản lý người dung</a></li>
+        <li><a href="/ContentServlet?action=redirectProduct">Quản lý sản phẩm</a></li>
+        <li><a href="/ContentServlet?action=redirectOrder">Quản lý đơn hàng</a></li>
+    </ul>
 </div>
-</body>
-<script>
-    function loadContent(page) {
-        $.ajax({
-            url : 'ContentServlet',
-            type : 'GET',
-            data : { page : page },
-            success : function (resp) {
-                $('.data-container').html(resp);
-            },
-            error : function () {
-                $('.data-container').html('<p>Lỗi khi tải nội dung</p>');
-            }
-        });
-    }
 
-</script>
+</body>
 </html>

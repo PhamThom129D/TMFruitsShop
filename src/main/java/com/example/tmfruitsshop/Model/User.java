@@ -11,7 +11,8 @@ public class User {
     private String urlAvatar;
     private Boolean status;
 
-    public User() {}
+    public User() {
+    }
 
     public User(int userID, String username, String password, String email, String phonenumber, String role, String address, String urlAvatar, Boolean status) {
         this.userID = userID;
@@ -24,6 +25,7 @@ public class User {
         this.urlAvatar = urlAvatar;
         this.status = status;
     }
+
     public User(String username, String password, String email, String phonenumber, String address, String urlAvatar) {
         this.username = username;
         this.password = password;
