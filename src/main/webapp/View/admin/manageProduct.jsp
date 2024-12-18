@@ -14,9 +14,10 @@
 <body>
 <div>
     <h1>Quản lý sản phẩm</h1>
-    <form action="/productAdmin?action=search" method="get">
+    <form action="/productAdmin" method="get">
+        <input type="hidden" name="action" value="search">
         <input type="text" name="keyword" placeholder="Nhập từ khóa tìm kiếm">
-        <input type="submit" value="Tìm kiếm"></form>
+        <input type="submit" value="Tìm kiếm">
     </form>
     <div>
         <table border="1">

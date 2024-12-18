@@ -19,6 +19,15 @@ public class Product {
         this.description = description;
     }
 
+    public Product(String productName, int quantity, int price, String urlImage, String type, String description) {
+        this.productName = productName;
+        this.quantity = quantity;
+        this.price = price;
+        this.urlImage = urlImage;
+        this.type = type;
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -30,15 +39,6 @@ public class Product {
                 ", type='" + type + '\'' +
                 ", description='" + description + '\'' +
                 '}';
-    }
-
-    public Product(String productName, int quantity, int price, String urlImage, String type, String description) {
-        this.productName = productName;
-        this.quantity = quantity;
-        this.price = price;
-        this.urlImage = urlImage;
-        this.type = type;
-        this.description = description;
     }
 
     public int getProductID() {

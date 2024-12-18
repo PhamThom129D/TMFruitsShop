@@ -8,8 +8,8 @@ public class ConnectDatabase {
     private static final String username = System.getenv("DB_USER");
     private static final String password = System.getenv("DB_PASS");
 
-public static Connection getConnection() throws ClassNotFoundException, SQLException {
-    Class.forName("com.mysql.cj.jdbc.Driver");
-    return java.sql.DriverManager.getConnection(url, username, password);
-}
+    public static Connection getConnection() throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        return java.sql.DriverManager.getConnection(url, username, password);
+    }
 }

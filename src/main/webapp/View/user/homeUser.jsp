@@ -1,11 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: T14
-  Date: 16/12/2024
-  Time: 4:48 CH
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="vi">
@@ -13,20 +6,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bán Hoa Quả</title>
-    <link rel="stylesheet" href="css/homeUser.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/homeUser.css">
 </head>
 <body>
 
-<!-- Header -->
+<!-- Header với Menu Bar -->
 <header>
-    <div class="container">
+    <div class="navbar">
+        <!-- Logo -->
         <div class="logo">
-            <h1>Bán Hoa Quả</h1>
+            <a href="home.jsp"><img src="images/logo.png" alt="Logo"></a>
         </div>
-        <div class="cart">
-            <button id="view-cart">Xem Giỏ Hàng (0)</button>
-        </div>
+        <!-- Menu -->
+        <ul class="menu">
+            <li><a href="home.jsp">Trang chủ</a></li>
+            <li><a href="search.jsp">Tìm kiếm sản phẩm</a></li>
+            <li><a href="/user?action=showCart">Giỏ hàng</a></li>
+            <li><a href="orders.jsp">Đơn hàng</a></li>
+            <li><a href="account.jsp">Tài khoản</a></li>
+            <li class="dropdown">
+                <a href="#">Sản phẩm</a>
+                <ul class="dropdown-content">
+                    <li><a href="products.jsp?type=cac-loai">Các loại</a></li>
+                    <li><a href="products.jsp?type=combo">Combo</a></li>
+                </ul>
+            </li>
+        </ul>
     </div>
 </header>
 
@@ -36,81 +42,41 @@
         <div class="product-list">
             <c:forEach items="${products}" var="product">
                 <div class="product-item">
-                    <img src="${product.urlImage}" alt="Táo">
+                    <img src="${product.urlImage}" alt="${product.productName}">
                     <h3>${product.productName}</h3>
-                    <p class="price">${(product.price)}</p>
-                    <button class="add-to-cart" data-name="${product.productName}" data-price="${(product.price)}">Thêm vào giỏ</button>
+                    <p class="price">${product.price}₫</p>
+                    <button class="show-detail"
+                            data-name="${product.productName}"
+                            data-price="${product.price}"
+                            data-img="${product.urlImage}"
+                            data-description="${product.description}">Mua hàng</button>
                 </div>
             </c:forEach>
-
-
         </div>
     </div>
 </main>
+
+<!-- Modal Chi Tiết Sản Phẩm -->
+<div id="product-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <img id="modal-img" src="" alt="Product Image" style="height: 120px ; width: 150px">
+        <h3 id="modal-name"></h3>
+        <p>Giá: <span id="modal-price"></span>₫</p>
+        <p>Mô tả: <span id="modal-description"></span></p>
+        <label for="quantity">Số lượng:</label>
+        <input type="number" id="quantity" value="1" min="1">
+        <button id="add-to-cart">Thêm vào giỏ hàng</button>
+    </div>
+</div>
 
 <!-- Footer -->
 <footer>
     <p>&copy; 2024 Bán Hoa Quả. Tất cả các quyền được bảo vệ.</p>
 </footer>
 
-<!-- Modal Giỏ Hàng -->
-<div id="cart-modal" class="modal">
-    <div class="modal-content">
-        <h3>Giỏ Hàng</h3>
-        <div id="cart-items"></div>
-        <div id="total"></div>
-        <button id="checkout">Thanh toán</button>
-        <button id="close-cart">Đóng</button>
-    </div>
-</div>
-
-<script>
-    let cart = [];
-
-    // Thêm sản phẩm vào giỏ hàng
-    $(".add-to-cart").click(function() {
-        const product = {
-            name: $(this).data("name"),
-            price: $(this).data("price"),
-            quantity: 1
-        };
-        cart.push(product);
-        updateCart();
-    });
-
-    // Cập nhật giỏ hàng
-    // Cập nhật giỏ hàng
-    function updateCart() {
-        let cartContent = "";
-        let total = 0;
-        cart.forEach(item => {
-            cartContent += `<p>${item.name} - ${item.quantity} x ${(item.price)}</p>`;
-            total += item.price * item.quantity;
-        });
-        $("#cart-items").html(cartContent);
-        $("#total").html("Tổng: " + (total));
-        $("#view-cart").text(`Xem Giỏ Hàng (${cart.length})`);
-    }
-
-
-    // Hiển thị giỏ hàng
-    $("#view-cart").click(function() {
-        $("#cart-modal").show();
-    });
-
-    // Đóng giỏ hàng
-    $("#close-cart").click(function() {
-        $("#cart-modal").hide();
-    });
-
-    // Thanh toán
-    $("#checkout").click(function() {
-        alert("Thanh toán thành công!");
-        cart = [];
-        updateCart();
-        $("#cart-modal").hide();
-    });
-</script>
+<!-- Link JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/homeUser.js"></script>
 </body>
 </html>
-

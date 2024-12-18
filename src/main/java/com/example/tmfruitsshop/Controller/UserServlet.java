@@ -11,6 +11,17 @@ import java.io.IOException;
 public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        
+        String action = req.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        switch (action) {
+            case "showCart":
+                req.getRequestDispatcher("/View/user/cart.jsp").forward(req, resp);
+                break;
+            default:
+                req.getRequestDispatcher("/View/user/homeUser.jsp").forward(req, resp);
+                break;
+        }
     }
 }

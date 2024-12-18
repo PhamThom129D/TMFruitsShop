@@ -11,6 +11,84 @@ body {
     color: #333;
 }
 
+/* Navbar */
+.navbar {
+    display: flex; /* Giúp các thành phần nằm ngang */
+    justify-content: space-between; /* Logo trái, menu phải */
+    align-items: center;
+    background-color: #4CAF50; /* Màu xanh lá */
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbar .logo img {
+    height: 50px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.navbar .logo img:hover {
+    transform: scale(1.1);
+}
+
+/* Menu chính - nằm ngang */
+.menu {
+    list-style: none;
+    display: flex; /* Giúp các mục menu nằm ngang */
+    gap: 20px; /* Khoảng cách giữa các mục */
+}
+
+.menu li {
+    position: relative;
+}
+
+.menu a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px 15px;
+    display: block;
+    transition: background 0.3s ease, color 0.3s ease;
+    border-radius: 5px;
+}
+
+.menu a:hover {
+    background-color: #45a049; /* Màu hover */
+    color: #fff;
+}
+
+/* Dropdown menu */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    min-width: 160px;
+    z-index: 10;
+}
+
+.dropdown-content li {
+    width: 100%;
+}
+
+.dropdown-content li a {
+    color: #333;
+    padding: 10px;
+    border-radius: 0;
+    transition: background 0.3s;
+}
+
+.dropdown-content li a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
 /* Product List */
 .product-list {
     display: flex;
