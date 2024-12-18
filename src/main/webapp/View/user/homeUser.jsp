@@ -16,7 +16,7 @@
     <div class="navbar">
         <!-- Logo -->
         <div class="logo">
-            <a href="home.jsp"><img src="images/logo.png" alt="Logo"></a>
+            <a href="/user/homeUser.jsp"><img src="images/logo.png" alt="Logo" style="width: 200px;height: 250px"></a>
         </div>
         <!-- Menu -->
         <ul class="menu">
@@ -60,9 +60,10 @@
 <div id="product-modal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
-        <img id="modal-img" src="" alt="Product Image" style="height: 120px ; width: 150px">
+        <img id="modal-img" src="" alt="Product Image">
         <h3 id="modal-name"></h3>
         <p>Giá: <span id="modal-price"></span>₫</p>
+        <p>Đơn vị : kg</p>
         <p>Mô tả: <span id="modal-description"></span></p>
         <label for="quantity">Số lượng:</label>
         <input type="number" id="quantity" value="1" min="1">
