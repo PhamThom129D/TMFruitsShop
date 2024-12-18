@@ -71,6 +71,7 @@ button.show-detail:hover {
 
 /* Modal */
 .modal {
+    border-color: rgba(87, 227, 93, 0.47);
     display: none;
     position: fixed;
     top: 0;
@@ -84,28 +85,28 @@ button.show-detail:hover {
 .modal-content {
     background: white;
     border-radius: 10px;
-    padding: 20px;
+    padding: 35px;
     width: 400px;
     margin: 10% auto;
     position: relative;
-    text-align: center;
+    text-align: left;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .modal-content img {
-    max-width: 100%;
+    max-width: 180px;
     height: auto;
     margin-bottom: 10px;
 }
 
 .modal-content h3 {
-    margin-bottom: 10px;
-    font-size: 22px;
+    margin-bottom: 15px;
+    font-size: 24px;
 }
 
 .modal-content p {
-    margin-bottom: 10px;
-    font-size: 16px;
+    margin-bottom: 16px;
+    font-size: 20px;
 }
 
 .close {
