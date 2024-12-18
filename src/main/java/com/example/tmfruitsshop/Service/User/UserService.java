@@ -32,9 +32,9 @@ public class UserService implements InUserService {
                 Boolean status = rs.getBoolean("status");
                 User user = new User(userID, username, password, email, phone, role, address, urlAvatar, status);
                 HttpSession session = req.getSession(true);
-                if(!status){
+                if (!status) {
                     return null;
-                }else{
+                } else {
                     session.setAttribute("loggedInUser", user);
                     switch (role) {
                         case "admin":
@@ -60,14 +60,14 @@ public class UserService implements InUserService {
     @Override
     public void register(User user) {
         String query = "INSERT INTO user (username, password, email, phonenumber, address, urlAvatar) values (?,?,?,?,?,?)";
-        try(Connection conn = ConnectDatabase.getConnection();
-            PreparedStatement preparedStatement = conn.prepareStatement(query);){
-            preparedStatement.setString(1,user.getUsername());
-            preparedStatement.setString(2,user.getPassword());
-            preparedStatement.setString(3,user.getEmail());
-            preparedStatement.setString(4,user.getPhonenumber());
-            preparedStatement.setString(5,user.getAddress());
-            preparedStatement.setString(6,user.getUrlAvatar());
+        try (Connection conn = ConnectDatabase.getConnection();
+             PreparedStatement preparedStatement = conn.prepareStatement(query)) {
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getEmail());
+            preparedStatement.setString(4, user.getPhonenumber());
+            preparedStatement.setString(5, user.getAddress());
+            preparedStatement.setString(6, user.getUrlAvatar());
             preparedStatement.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);

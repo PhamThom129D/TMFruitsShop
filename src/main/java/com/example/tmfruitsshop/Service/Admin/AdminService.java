@@ -101,4 +101,30 @@ public class AdminService implements InAdminService {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public List<Product> searchProductWithName(String keyword) {
+        List<Product> productList = new ArrayList<>();
+        String query = "Select * from products where productName like ?";
+        try (Connection conn = ConnectDatabase.getConnection();
+             PreparedStatement prep = conn.prepareStatement(query)
+        ) {
+            prep.setString(1, "%" + keyword + "%");
+            ResultSet rs = prep.executeQuery();
+            while (rs.next()) {
+                int productID = rs.getInt("productID");
+                String productName = rs.getString("productName");
+                int quantity = rs.getInt("stock");
+                int price = rs.getInt("price");
+                String urlImage = rs.getString("urlImage");
+                String description = rs.getString("description");
+                String type = rs.getString("type");
+                Product product = new Product(productID, productName, quantity, price, urlImage, type, description);
+                productList.add(product);
+            }
+            return productList;
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

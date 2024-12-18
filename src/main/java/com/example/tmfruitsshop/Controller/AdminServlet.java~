@@ -33,7 +33,8 @@ public class AdminServlet extends HttpServlet {
                 resp.sendRedirect("View/admin/manageUser.jsp");
                 break;
             case "redirectProduct":
-                showProductForm(req, resp);
+                RequestDispatcher dispatcher = req.getRequestDispatcher("/View/admin/manageProduct.jsp");
+                dispatcher.forward(req, resp);
                 break;
             case "redirectOrder":
                 resp.sendRedirect("View/admin/manageOrder.jsp");
@@ -41,17 +42,6 @@ public class AdminServlet extends HttpServlet {
             default:
                 resp.sendRedirect("View/admin/homeAdmin.jsp");
                 break;
-        }
-    }
-
-    private void showProductForm(HttpServletRequest req, HttpServletResponse resp) {
-        List<Product> products = adminService.getAllProduct();
-        req.setAttribute("products", products);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/View/admin/manageProduct.jsp");
-        try {
-            dispatcher.forward(req, resp);
-        } catch (ServletException | IOException e) {
-            e.printStackTrace();
         }
     }
 
