@@ -24,6 +24,7 @@ public class CartServlet extends HttpServlet {
         resp.setContentType("text/html; charset=UTF-8");
         String action = req.getParameter("action");
         int productID = Integer.parseInt(req.getParameter("id"));
+        System.out.println(action);
         if (action == null) {
             action = "";
         }
@@ -76,6 +77,7 @@ public class CartServlet extends HttpServlet {
                 req.setAttribute("cart", cart);
                 req.setAttribute("products", adminService.getAllProduct());
                 req.getRequestDispatcher("/View/user/homeUser.jsp").forward(req, resp);
+                System.out.println(111);
                 break;
 
             default:

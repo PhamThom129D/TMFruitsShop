@@ -1,86 +1,94 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giỏ Hàng</title>
-    <link rel="stylesheet" href="css/homeUser.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cart.css">
+    <script src="${pageContext.request.contextPath}/js/cart.js"></script>
 </head>
 <body>
-<h1>Shopping Cart</h1>
 
-<div class="shopping-cart">
+<div class="container">
+    <c:if test="${empty cart}">
+        <p>Giỏ hàng của bạn đang trống. Hãy thêm sản phẩm vào giỏ hàng!</p>
+    </c:if>
 
-    <div class="column-labels">
-        <label class="product-image">Image</label>
-        <label class="product-details">Product</label>
-        <label class="product-price">Price</label>
-        <label class="product-quantity">Quantity</label>
-        <label class="product-removal">Remove</label>
-        <label class="product-line-price">Total</label>
-    </div>
+    <!-- Nếu giỏ hàng không rỗng, hiển thị các sản phẩm -->
+    <c:if test="${not empty cart}">
+        <form action="/cart" method="POST">
+            <!-- Thêm class cart-table-container để tạo vùng cuộn -->
+            <label>
+                <input type="checkbox" id="selectAll" /> Chọn tất cả
+            </label>
+            <div class="cart-table-container">
+                <table class="cart-table">
+                    <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th></th>
+                        <th>Ảnh</th>
+                        <th>Tên Sản Phẩm</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Tổng</th>
+                        <th>Thao tác</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${cart}" var="item" varStatus="status">
+                        <tr>
+                            <td>${status.index + 1}</td>
+                            <td>
+                                <!-- Checkbox cho từng sản phẩm -->
+                                <input type="checkbox" name="selected_${item.productID}" value="${item.productID}" class="product-checkbox" />
+                            </td>
+                            <td><img src="${item.urlImage}" alt="image Fruit" style="width: 150px; height: 120px"></td>
+                            <td>
+                                    ${item.productName}
+                            </td>
+                            <td>
+                                <fmt:formatNumber value="${item.price}" type="number" pattern="#,##0" />₫
+                            </td>
+                            <td>
+                                <!-- Sử dụng class quantity và data-price để lắng nghe thay đổi -->
+                                <input type="number" class="quantity" name="quantity_${item.productID}"
+                                       value="${item.quantity}" min="1" data-price="${item.price}">
+                            </td>
+                            <td class="total-price">
+                                <fmt:formatNumber value="${item.price * item.quantity}" type="number" pattern="#,##0" />₫
+                            </td>
+                            <td>
+                                <a href="/cart?action=removeProduct&id=${item.productID}">
+                                    <button type="button">Xóa</button>
+                                </a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
 
-    <div class="product">
-        <div class="product-image">
-            <img src="https://s.cdpn.io/3/dingo-dog-bones.jpg">
-        </div>
-        <div class="product-details">
-            <div class="product-title">Dingo Dog Bones</div>
-            <p class="product-description">The best dog bones of all time. Holy crap. Your dog will be begging for these things! I got curious once and ate one myself. I'm a fan.</p>
-        </div>
-        <div class="product-price">12.99</div>
-        <div class="product-quantity">
-            <input type="number" value="2" min="1">
-        </div>
-        <div class="product-removal">
-            <button class="remove-product">
-                Remove
-            </button>
-        </div>
-        <div class="product-line-price">25.98</div>
-    </div>
 
-    <div class="product">
-        <div class="product-image">
-            <img src="https://s.cdpn.io/3/large-NutroNaturalChoiceAdultLambMealandRiceDryDogFood.png">
-        </div>
-        <div class="product-details">
-            <div class="product-title">Nutro™ Adult Lamb and Rice Dog Food</div>
-            <p class="product-description">Who doesn't like lamb and rice? We've all hit the halal cart at 3am while quasi-blackout after a night of binge drinking in Manhattan. Now it's your dog's turn!</p>
-        </div>
-        <div class="product-price">45.99</div>
-        <div class="product-quantity">
-            <input type="number" value="1" min="1">
-        </div>
-        <div class="product-removal">
-            <button class="remove-product">
-                Remove
-            </button>
-        </div>
-        <div class="product-line-price">45.99</div>
-    </div>
+        </form>
 
-    <div class="totals">
-        <div class="totals-item">
-            <label>Subtotal</label>
-            <div class="totals-value" id="cart-subtotal">71.97</div>
-        </div>
-        <div class="totals-item">
-            <label>Tax (5%)</label>
-            <div class="totals-value" id="cart-tax">3.60</div>
-        </div>
-        <div class="totals-item">
-            <label>Shipping</label>
-            <div class="totals-value" id="cart-shipping">15.00</div>
-        </div>
-        <div class="totals-item totals-item-total">
-            <label>Grand Total</label>
-            <div class="totals-value" id="cart-total">90.57</div>
-        </div>
-    </div>
 
-    <button class="checkout">Checkout</button>
-
+    </c:if>
 </div>
+<footer>
+    <!-- Tổng tiền -->
+    <div class="total">
+        <p><strong>Tổng tiền: </strong><span id="totalAmount"></span></p>
+    </div>
+    <!-- Thanh toán -->
+    <div class="checkout">
+        <a href="/checkout.jsp"><button class="checkout-btn">Thanh toán</button></a>
+    </div>
+</footer>
+
+
 </body>
 </html>

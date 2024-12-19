@@ -21,7 +21,7 @@
     <!-- Container ở giữa chứa thông tin sản phẩm và nút mua hàng -->
     <div class="center-container">
         <div class="product-details">
-            <form action="/cart?action=addToCart&id=${product.productID}" method="post">
+            <form action="/cart?action=addToCart?id=${product.productID}" method="post">
                 <h1 class="product-name">${product.productName}</h1>
                 <div style="height: 5px;background-color: #4CAF50"></div>
                 <p class="product-price">Giá: <fmt:formatNumber value="${product.price}" type="number" pattern="#,###" /> đ</p>

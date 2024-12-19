@@ -67,14 +67,14 @@ footer {
 
 /* Tổng tiền bên phải */
 .total {
-    text-align: left;
+    text-align: right;
     font-size: 20px;
     font-weight: bold;
 }
 
 /* Nút thanh toán bên trái */
 .checkout {
-    text-align: right;
+    text-align: left;
     height: 40px;
 }
 
@@ -86,6 +86,9 @@ footer {
     cursor: pointer;
     font-size: 24px;
     font-weight: bold;
-    height: 40px;
+    height: 30px;
 }
 
+.checkout-btn:hover {
+    background-color: #45a049;
+}
