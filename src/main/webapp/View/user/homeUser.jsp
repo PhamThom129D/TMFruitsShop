@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="vi">
@@ -10,21 +11,25 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/homeUser.css">
 </head>
 <body>
-
-<!-- Header với Menu Bar -->
 <header>
     <div class="navbar">
         <!-- Logo -->
         <div class="logo">
-            <a href="/user/homeUser.jsp"><img src="images/logo.png" alt="Logo" style="width: 200px;height: 250px"></a>
+            <a href="/user/homeUser.jsp"><img src="images/logo.png" alt="Logo" style="width: 100px; height: 100px"></a>
         </div>
         <!-- Menu -->
         <ul class="menu">
-            <li><a href="home.jsp">Trang chủ</a></li>
-            <li><a href="search.jsp">Tìm kiếm sản phẩm</a></li>
+            <li><a href="/user">Trang chủ</a></li>
+            <li>
+                <div class="search-container">
+                    <form action="/user?action=search" method="get">
+                        <input type="text" placeholder="Tìm kiếm" name="search">
+                        <button type="submit">Tìm kiếm</button>
+                    </form>
+                </div>
+            </li>
             <li><a href="/user?action=showCart">Giỏ hàng</a></li>
-            <li><a href="orders.jsp">Đơn hàng</a></li>
-            <li><a href="account.jsp">Tài khoản</a></li>
+            <li><a href="/user?action=showAccount">Tài khoản</a></li>
             <li class="dropdown">
                 <a href="#">Sản phẩm</a>
                 <ul class="dropdown-content">
@@ -32,6 +37,7 @@
                     <li><a href="products.jsp?type=combo">Combo</a></li>
                 </ul>
             </li>
+            <li><a href="/login?action=logout">Đăng xuất</a></li>
         </ul>
     </div>
 </header>
@@ -42,42 +48,21 @@
         <div class="product-list">
             <c:forEach items="${products}" var="product">
                 <div class="product-item">
-                    <img src="${product.urlImage}" alt="${product.productName}">
+                    <img src="${product.urlImage}" alt="${product.productName}" style="height: 80px; width: 100px">
                     <h3>${product.productName}</h3>
-                    <p class="price">${product.price}₫</p>
-                    <button class="show-detail"
-                            data-name="${product.productName}"
-                            data-price="${product.price}"
-                            data-img="${product.urlImage}"
-                            data-description="${product.description}">Mua hàng</button>
+                    <p class="price">
+                        <fmt:formatNumber value="${product.price}" type="number" pattern="#,##0" />₫
+                    </p>
+                    <a href="/cart?action=showProductDetail&id=${product.productID}"><button class="show-detail">Chi tiết sản phẩm</button></a>
                 </div>
             </c:forEach>
         </div>
     </div>
 </main>
 
-<!-- Modal Chi Tiết Sản Phẩm -->
-<div id="product-modal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <img id="modal-img" src="" alt="Product Image">
-        <h3 id="modal-name"></h3>
-        <p>Giá: <span id="modal-price"></span>₫</p>
-        <p>Đơn vị : kg</p>
-        <p>Mô tả: <span id="modal-description"></span></p>
-        <label for="quantity">Số lượng:</label>
-        <input type="number" id="quantity" value="1" min="1">
-        <button id="add-to-cart">Thêm vào giỏ hàng</button>
-    </div>
-</div>
-
-<!-- Footer -->
 <footer>
     <p>&copy; 2024 Bán Hoa Quả. Tất cả các quyền được bảo vệ.</p>
 </footer>
 
-<!-- Link JS -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/homeUser.js"></script>
 </body>
 </html>

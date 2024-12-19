@@ -66,7 +66,7 @@ INSERT INTO products (productName, price, description, type, stock, urlImage) VA
 ('Quả Na', 40000, 'Na to tròn, chín đều, vị ngọt thanh mát, cung cấp nhiều năng lượng.', 'Trái cây', 100, 'https://www.lottemart.vn/media/catalog/product/cache/0x0/2/1/2162640000005-1-bb.jpg.webp'),
 ('Chôm chôm', 50000, 'Chôm chôm đỏ mọng, thịt quả ngọt lịm, giàu vitamin và khoáng chất.', 'Trái cây', 100, 'https://hoptacxathanhbinh.com/wp-content/uploads/2023/08/rambutan.png'),
 ('Quả Ổi', 30000, 'Ổi giòn tươi, vị ngọt nhẹ, giàu vitamin C giúp tăng cường sức đề kháng.', 'Trái cây', 100, 'https://cdnphoto.dantri.com.vn/EHz1iHLEoP7XhEdij8BcuFgSXD8=/zoom/1200_630/2024/01/03/oi-b-crop-1704254876374.jpeg'),
-('Quả Thăng Long', 25000, 'Thăng long ruột đỏ, mọng nước, vị thanh mát, tốt cho tiêu hoá.', 'Trái cây', 100, 'https://www.lottemart.vn/media/catalog/product/cache/0x0/2/2/2274090000006.jpg.webp'),
+('Quả Thanh Long', 25000, 'Thăng long ruột đỏ, mọng nước, vị thanh mát, tốt cho tiêu hoá.', 'Trái cây', 100, 'https://www.lottemart.vn/media/catalog/product/cache/0x0/2/2/2274090000006.jpg.webp'),
 ('Quả Dứa', 20000, 'Dứa vàng tươi, vị ngọt chua nhẹ, chứa nhiều enzyme hỗ trợ tiêu hoá.', 'Trái cây', 100, 'https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2019/11/17/766605/Tac-Dung-Giam-Can-Hi.jpg'),
 ('Quả Vú Sữa', 40000, 'Vú sữa tươi ngon, vị ngọt béo, chứa nhiều vitamin và khoáng chất.', 'Trái cây', 100, 'https://i.ex-cdn.com/suckhoecongdongonline.vn/files/content/2021/08/04/vu-sua-1443.png'),
 ('Đu đủ', 22000, 'Đu đủ chín, vị ngọt thanh, giàu vitamin A và tốt cho tiêu hoá.', 'Trái cây', 100, 'https://product.hstatic.net/1000282430/product/du-du-do_a925cf1dca944fa5aea5fafa75c85656_master.jpg'),
