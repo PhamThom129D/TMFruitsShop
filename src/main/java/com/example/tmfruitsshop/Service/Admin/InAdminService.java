@@ -15,4 +15,10 @@ public interface InAdminService {
     void addProduct(Product product);
 
     List<Product> searchProductWithName(String keyword);
+
+    List<Product> searchProductByType(String type);
+
+    List<Product> searchProductByPrice(int min, int max);
+
+    List<Product> searchProductByName(String name);
 }

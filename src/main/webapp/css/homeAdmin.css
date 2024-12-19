@@ -4,11 +4,13 @@ body {
     font-family: helvetica;
     font-size: 14px;
 }
+
 ul {
     padding: 0;
     margin: 0;
     list-style: none;
 }
+
 .container {
     width: 100vw;
     height: 100vh;
@@ -24,45 +26,48 @@ ul {
     background: #e35;
     position: relative;
 }
+
 /* Căn giữa các phần tử trong user-info */
 .user-info {
-    justify-content: center;     /* Căn giữa theo chiều ngang */
-    align-items: center;         /* Căn giữa theo chiều dọc */
-    list-style-type: none;       /* Xóa dấu chấm của danh sách */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    list-style-type: none; /* Xóa dấu chấm của danh sách */
 }
 
 /* CSS cho các phần tử li để tạo khoảng cách giữa chúng */
 .user-info-item {
-    margin: 10px;                /* Thêm khoảng cách đều giữa các li */
-    display: flex;               /* Đảm bảo li có thể căn giữa nội dung */
-    align-items: center;         /* Căn giữa nội dung của li theo chiều dọc */
+    margin: 10px; /* Thêm khoảng cách đều giữa các li */
+    display: flex; /* Đảm bảo li có thể căn giữa nội dung */
+    align-items: center; /* Căn giữa nội dung của li theo chiều dọc */
 }
 
 /* CSS cho ảnh người dùng */
 .user-avatar {
-    width: 40px;                 /* Kích thước chiều rộng ảnh */
-    height: 40px;                /* Kích thước chiều cao ảnh */
-    border-radius: 50%;          /* Làm cho ảnh hình tròn */
-    object-fit: cover;           /* Đảm bảo ảnh vừa với khung */
-    border: 2px solid black;     /* Thêm viền quanh ảnh */
+    width: 40px; /* Kích thước chiều rộng ảnh */
+    height: 40px; /* Kích thước chiều cao ảnh */
+    border-radius: 50%; /* Làm cho ảnh hình tròn */
+    object-fit: cover; /* Đảm bảo ảnh vừa với khung */
+    border: 2px solid black; /* Thêm viền quanh ảnh */
 }
 
 
-.user-settings{
+.user-settings {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     background: #ccc;
 }
-.user-settings{
+
+.user-settings {
     /*   padding: 10px; */
     display: grid;
     grid-template-columns:repeat(3, 1fr);
     /*   grid-gap: 10px; */
     /*   padding: 10px; */
 }
-.user-settings li{
+
+.user-settings li {
     text-align: center;
     background: #000;
     color: #fff;
@@ -71,7 +76,7 @@ ul {
     transition: all 200ms ease-in-out;
 }
 
-.user-settings li:hover{
+.user-settings li:hover {
     background: #fff;
     color: #000;
 }
@@ -83,19 +88,22 @@ ul {
     overflow: auto;
 }
 
-.menu ul{
+.menu ul {
     /*   padding:5px 10px; */
     /*   background: #ccc; */
 }
-.menu li>span{
+
+.menu li > span {
     display: block;
     /*   color: red; */
-    padding:10px  0 5px 5px;
+    padding: 10px 0 5px 5px;
     font-size: 1.1em;
 }
-.menu>ul>li{
+
+.menu > ul > li {
     cursor: pointer;
 }
+
 .menu li li {
     cursor: pointer;
     /*   margin-left: 10px; */
@@ -106,7 +114,7 @@ ul {
     transition: background 500ms ease-in-out;
 }
 
-.menu li li:hover{
+.menu li li:hover {
     background: #ccc;
 }
 

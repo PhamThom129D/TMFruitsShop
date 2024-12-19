@@ -22,7 +22,6 @@ public class ProductAdminServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
         String action = req.getParameter("action");
-        System.out.println(action);
         if (action == null) {
             action = "";
         }

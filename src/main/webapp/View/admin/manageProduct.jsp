@@ -34,14 +34,15 @@
             <c:forEach var="product" items="${products}" varStatus="status">
                 <tr>
                     <td>${status.index + 1}</td>
-                     <td> <img src="${product.urlImage}" style="width: 80px ; height: 60px" alt="image Fruit"></td>
+                    <td><img src="${product.urlImage}" style="width: 80px ; height: 60px" alt="image Fruit"></td>
                     <td>${product.productName}</td>
                     <td>${product.price}</td>
                     <td>${product.quantity}</td>
                     <td>${product.type}</td>
                     <td>${product.description}</td>
                     <td>
-                        <a href="/productAdmin?action=update&id=${product.productID}" methods="GET">Sửa thông tin</a><br>
+                        <a href="/productAdmin?action=update&id=${product.productID}" methods="GET">Sửa thông
+                            tin</a><br>
                     </td>
                 </tr>
             </c:forEach>

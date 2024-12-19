@@ -22,7 +22,7 @@
     <table>
         <tr>
             <td>Ảnh</td>
-            <td><input type="text" name="image" ></td>
+            <td><input type="text" name="image"></td>
         </tr>
 
         <tr>
@@ -37,7 +37,7 @@
 
         <tr>
             <td>Số lượng</td>
-            <td><input type="text" name="quantity" ></td>
+            <td><input type="text" name="quantity"></td>
         </tr>
 
         <tr>

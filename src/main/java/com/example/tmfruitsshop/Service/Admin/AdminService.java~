@@ -97,20 +97,10 @@ public class AdminService implements InAdminService {
     @Override
     public List<Product> searchProductByType(String type) {
         List<Product> productList = new ArrayList<>();
-        String category = "";
-
-        if ("fruits".equalsIgnoreCase(type)) {
-            category = "Trái cây";
-        } else if ("vegetables".equalsIgnoreCase(type)) {
-            category = "Rau củ";
-        } else if ("combo".equalsIgnoreCase(type)) {
-            category = "Combo";
-        }
-
         String query = "SELECT * FROM products WHERE type = ?";
         try (Connection conn = ConnectDatabase.getConnection();
              PreparedStatement prep = conn.prepareStatement(query)) {
-            prep.setString(1, category);
+            prep.setString(1, type);
             ResultSet rs = prep.executeQuery();
             while (rs.next()) {
                 Product product = mapResultSetToProduct(rs);
@@ -121,7 +111,6 @@ public class AdminService implements InAdminService {
         }
         return productList;
     }
-
 
     @Override
     public List<Product> searchProductByPrice(int min, int max) {

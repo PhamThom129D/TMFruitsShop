@@ -36,7 +36,7 @@ public class AuthenticateServlet extends HttpServlet {
                 break;
             case "logout":
                 HttpSession session = req.getSession();
-                session.invalidate();
+                session.setMaxInactiveInterval(60 * 60);
                 resp.sendRedirect("View/authenticate/login.jsp");
                 break;
         }
@@ -51,7 +51,6 @@ public class AuthenticateServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
         String action = req.getParameter("action");
-        System.out.println(action);
         if (action == null) action = "";
 
         switch (action) {
@@ -88,16 +87,13 @@ public class AuthenticateServlet extends HttpServlet {
             session.setAttribute("errorMessage", "Sai mật khẩu hoặc tài khoản không tồn tại.");
             resp.sendRedirect("View/authenticate/login.jsp");
         } else if (user.getStatus()) {
-            System.out.println(user);
             session.setAttribute("user", user);
             switch (user.getRole()) {
                 case "admin":
                     req.getRequestDispatcher("View/admin/homeAdmin.jsp").forward(req, resp);
                     break;
                 case "user":
-                    adminService.getAllProduct();
-                    req.setAttribute("products", adminService.getAllProduct());
-                    req.getRequestDispatcher("View/user/homeUser.jsp").forward(req, resp);
+                    resp.sendRedirect("/user");
                     break;
             }
         } else {

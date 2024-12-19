@@ -5,7 +5,7 @@ body {
 
 /* Đảm bảo body và html chiếm toàn bộ chiều cao màn hình */
 body, html {
-    height: 100%;
+    height: 90%;
     margin: 0;
 }
 
@@ -31,8 +31,8 @@ h2 {
 .cart-table-container {
     flex-grow: 1; /* Đảm bảo bảng giỏ hàng chiếm tối đa không gian có sẵn */
     overflow-y: auto;
-    border: 1px solid #ccc; /* Thêm viền cho bảng */
-    margin-bottom: 20px; /* Khoảng cách dưới bảng */
+    border: 1px solid #678c67; /* Thêm viền cho bảng */
+    margin-bottom: 40px; /* Khoảng cách dưới bảng */
 }
 
 /* Các thẻ table, td, th... */
@@ -56,12 +56,11 @@ h2 {
 footer {
     display: flex;
     justify-content: space-between; /* Đặt phần tử ở 2 bên trái và phải */
-    padding: 10px;
     background-color: #4CAF50;
     color: white;
     position: fixed;
     bottom: 0;
-    width: 100%;
+    width: 97%;
     box-sizing: border-box;
 }
 
@@ -75,12 +74,12 @@ footer {
 /* Nút thanh toán bên trái */
 .checkout {
     text-align: right;
-    height: 40px;
+    height: 30px;
 }
 
 .checkout-btn {
     background-color: #4CAF50;
-    padding-top: 20px;
+    padding-top: 19px;
     color: white;
     border: none;
     cursor: pointer;
