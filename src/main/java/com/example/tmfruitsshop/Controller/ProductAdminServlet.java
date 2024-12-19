@@ -20,6 +20,7 @@ public class ProductAdminServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html; charset=UTF-8");
         String action = req.getParameter("action");
         System.out.println(action);
         if (action == null) {
@@ -40,7 +41,6 @@ public class ProductAdminServlet extends HttpServlet {
 
     private void loadAllProducts(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Product> products = adminService.getAllProduct();
-        System.out.println(products);
         req.setAttribute("products", products);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/View/admin/manageProduct.jsp");
         dispatcher.forward(req, resp);
@@ -98,8 +98,6 @@ public class ProductAdminServlet extends HttpServlet {
 
             Product product = new Product(productName, quantity, price, urlImage, type, description);
             adminService.addProduct(product);
-
-            // Load lại trang quản lý sản phẩm
             loadAllProducts(req, resp);
         } catch (NumberFormatException e) {
             req.setAttribute("error", "Dữ liệu không hợp lệ!");

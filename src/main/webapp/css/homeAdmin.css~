@@ -40,8 +40,8 @@ ul {
 
 /* CSS cho ảnh người dùng */
 .user-avatar {
-    width: 40px;                 /* Kích thước chiều rộng ảnh */
-    height: 40px;                /* Kích thước chiều cao ảnh */
+    width: 80px;                 /* Kích thước chiều rộng ảnh */
+    height: 80px;                /* Kích thước chiều cao ảnh */
     border-radius: 50%;          /* Làm cho ảnh hình tròn */
     object-fit: cover;           /* Đảm bảo ảnh vừa với khung */
     border: 2px solid black;     /* Thêm viền quanh ảnh */

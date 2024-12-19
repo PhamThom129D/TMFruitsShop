@@ -94,7 +94,7 @@ button.show-detail:hover {
 }
 
 .modal-content img {
-    max-width: 180px;
+    max-width: 100%;
     height: auto;
     margin-bottom: 10px;
 }
@@ -146,3 +146,134 @@ footer {
     margin-top: 20px;
     font-size: 14px;
 }
+/* Menubar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4CAF50;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar .logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+.menu {
+    display: flex;
+    list-style-type: none;
+}
+
+.menu li {
+    margin-right: 20px;
+    position: relative;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px;
+    display: block;
+}
+
+.menu a:hover {
+    background-color: #4CAF50;
+    border-radius: 5px;
+}
+
+/* Dropdown Menu */
+.menu .dropdown {
+    position: relative;
+}
+
+.menu .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #333;
+    min-width: 160px;
+    border-radius: 5px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.menu .dropdown-content li {
+    padding: 10px;
+}
+
+.menu .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.menu .dropdown-content li a {
+    color: white;
+    padding: 8px 10px;
+    text-decoration: none;
+}
+
+.menu .dropdown-content li a:hover {
+    background-color: #4CAF50;
+}
+
+/* Search Container */
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+.search-container input[type="text"] {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.search-container button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-container button:hover {
+    background-color: #45a049;
+}
+
+/* Responsive Menu (Mobile) */
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .menu li {
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .menu a {
+        padding: 12px 20px;
+        width: 100%;
+        text-align: left;
+    }
+
+    .menu .dropdown-content {
+        left: 100%;
+        top: 0;
+    }
+}
+
