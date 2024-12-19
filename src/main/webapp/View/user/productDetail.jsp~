@@ -21,25 +21,28 @@
     <!-- Container ở giữa chứa thông tin sản phẩm và nút mua hàng -->
     <div class="center-container">
         <div class="product-details">
-            <form action="/cart?action=addToCart?id=${product.productID}" method="post">
+            <form action="/cart?action=addToCart&id=${product.productID}" method="post">
                 <h1 class="product-name">${product.productName}</h1>
                 <div style="height: 5px;background-color: #4CAF50"></div>
-                <p class="product-price">Giá: <fmt:formatNumber value="${product.price}" type="number" pattern="#,###" /> đ</p>
+                <p class="product-price">Giá: <fmt:formatNumber value="${product.price}" type="number" pattern="#,###"/>
+                    đ</p>
                 <p class="product-unit">
                     Đơn vị:
                     <c:if test="${product.type.equals('Combo')}">Combo</c:if>
                     <c:if test="${product.type.equals('Trái cây')}">0.5kg</c:if>
                     <c:if test="${product.type.equals('Rau củ')}">kg</c:if>
                 </p>
+                <p style="font-size: smaller">Số lượng trong kho : ${product.quantity}</p>
                 <p class="product-description">Mô tả : ${product.description}</p>
                 <div class="quantity-controls">
                     <label for="quantity">Số lượng: </label>
-                    <input type="number" id="quantity" name="quantityBuy" value="1" min="1">
+                    <input type="number" id="quantity" name="quantityBuy" value="1" min="1" max="${product.quantity}"
+                           required>
                 </div>
                 <div style="padding-top: 18px">
                     <label>Xuất xứ: Nhập khẩu</label>
                 </div>
-                <div style="height: 5px;background-color: #4CAF50"></div>
+                <div style="height: 5px;background-color: #4CAF50; margin-top: 20px;margin-bottom: 20px"></div>
                 <div class="add-to-cart-container">
                     <button id="add-to-cart" class="btn-add-to-cart" type="submit">Thêm vào giỏ hàng</button>
                 </div>
@@ -68,7 +71,8 @@
                 <h2>Liên hệ tư vấn</h2>
             </div>
             <p>Số điện thoại: 0867536601</p>
-            <p>Liên hệ qua Facebook: <a href="https://www.facebook.com/profile.php?id=100047868483999" target="_blank">Facebook</a></p>
+            <p>Liên hệ qua Facebook: <a href="https://www.facebook.com/profile.php?id=100047868483999" target="_blank">Facebook</a>
+            </p>
         </div>
     </div>
 </div>

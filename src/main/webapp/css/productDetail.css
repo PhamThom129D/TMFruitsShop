@@ -11,7 +11,7 @@ body {
     display: flex;
     flex-wrap: nowrap; /* Giữ các phần tử trên cùng một dòng */
     max-width: 1400px; /* Mở rộng chiều rộng tối đa */
-    margin: 30px auto;
+    margin: 60px auto;
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
@@ -58,7 +58,6 @@ body {
 
 .product-unit, .product-description {
     font-size: 18px;
-    color: #555;
 }
 
 .product-description {
@@ -109,18 +108,18 @@ body {
 
 .commitment, .contact-info {
     background-color: #ffffff;
-    border-radius: 8px;
+    border-radius: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .commitment h2, .contact-info h2 {
     font-size: 28px;
     margin-bottom: 10px;
-    padding-left: 20px;
+    padding-left: 14px;
 
 }
 
-.commitment ul, .contact-info ul {
+.commitment ul {
     list-style-type: none;
     padding-left: 20px;
 }

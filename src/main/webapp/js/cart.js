@@ -4,7 +4,7 @@ function updateTotalPrice() {
     // Lặp qua tất cả các checkbox và kiểm tra nếu chúng được chọn
     var selectedItems = document.querySelectorAll('.product-checkbox:checked');
 
-    selectedItems.forEach(function(checkbox) {
+    selectedItems.forEach(function (checkbox) {
         var row = checkbox.closest('tr');
         var price = parseFloat(row.querySelector('.quantity').getAttribute('data-price'));
         var quantity = parseInt(row.querySelector('.quantity').value);
@@ -23,21 +23,21 @@ function updateTotalPrice() {
 }
 
 // Lắng nghe sự thay đổi khi người dùng thay đổi số lượng, checkbox hoặc trạng thái "Chọn tất cả"
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     var quantityInputs = document.querySelectorAll('.quantity');
-    quantityInputs.forEach(function(input) {
+    quantityInputs.forEach(function (input) {
         input.addEventListener('input', updateTotalPrice);
     });
 
     var checkboxes = document.querySelectorAll('.product-checkbox');
-    checkboxes.forEach(function(checkbox) {
+    checkboxes.forEach(function (checkbox) {
         checkbox.addEventListener('change', updateTotalPrice);
     });
 
     // Lắng nghe sự thay đổi của checkbox "Chọn tất cả"
-    document.getElementById("selectAll").addEventListener("change", function() {
+    document.getElementById("selectAll").addEventListener("change", function () {
         var checkboxes = document.querySelectorAll(".product-checkbox");
-        checkboxes.forEach(function(checkbox) {
+        checkboxes.forEach(function (checkbox) {
             checkbox.checked = document.getElementById("selectAll").checked;
         });
         updateTotalPrice();

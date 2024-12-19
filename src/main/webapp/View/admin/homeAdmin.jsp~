@@ -10,23 +10,23 @@
 
 </head>
 <body>
-<div class="header">
-    <c:if test="${sessionScope.user != null}">
-        <ul class="user-info">
-            <li class="user-info-item">
-                <img src="${sessionScope.user.urlAvatar}" class="user-avatar" alt="image">
-            </li>
-            <li class="user-info-item">${sessionScope.user.username}</li>
-            <li class="user-info-item">${sessionScope.user.email}</li>
-        </ul>
-    </c:if>
+    <div class="header">
+        <c:if test="${sessionScope.user != null}">
+            <ul class="user-info">
+                <li class="user-info-item">
+                    <img src="${sessionScope.user.urlAvatar}" class="user-avatar" alt="image">
+                </li>
+                <li class="user-info-item">${sessionScope.user.username}</li>
+                <li class="user-info-item">${sessionScope.user.email}</li>
+            </ul>
+        </c:if>
 
-    <ul class="user-settings">
-        <li>profile</li>
-        <li>Setting</li>
-        <li><a href="/?action=logout">Đăng xuất</a></li>
-    </ul>
-</div>
+        <ul class="user-settings">
+            <li>profile</li>
+            <li>Setting</li>
+            <li><a href="/?action=logout">Đăng xuất</a></li>
+        </ul>
+    </div>
 <div>
     <ul class="menu">
         <li><a href="/ContentServlet?action=redirectUser">Quản lý người dung</a></li>

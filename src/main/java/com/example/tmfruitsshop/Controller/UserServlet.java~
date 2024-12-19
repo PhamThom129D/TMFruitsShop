@@ -29,9 +29,6 @@ public class UserServlet extends HttpServlet {
             case "showCart":
                 req.getRequestDispatcher("/View/user/cart.jsp").forward(req, resp);
                 break;
-            case "searchWithType":
-                searchWithType(req, resp);
-                break;
             default:
                 loadHomeUser(req, resp);
                 break;
@@ -51,6 +48,9 @@ public class UserServlet extends HttpServlet {
             case "searchProduct":
                 searchProduct(req, resp);
                 break;
+                case "searchWithType":
+                    searchWithType(req, resp);
+                    break;
         }
     }
 

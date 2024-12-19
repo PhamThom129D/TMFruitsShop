@@ -13,16 +13,15 @@
 <body>
 
 <div class="container">
+    <a href="/user">Quay lại trang chủ</a>
     <c:if test="${empty cart}">
         <p>Giỏ hàng của bạn đang trống. Hãy thêm sản phẩm vào giỏ hàng!</p>
     </c:if>
 
-    <!-- Nếu giỏ hàng không rỗng, hiển thị các sản phẩm -->
     <c:if test="${not empty cart}">
         <form action="/cart" method="POST">
-            <!-- Thêm class cart-table-container để tạo vùng cuộn -->
             <label>
-                <input type="checkbox" id="selectAll" /> Chọn tất cả
+                <input type="checkbox" id="selectAll"/> Chọn tất cả
             </label>
             <div class="cart-table-container">
                 <table class="cart-table">
@@ -43,28 +42,33 @@
                         <tr>
                             <td>${status.index + 1}</td>
                             <td>
-                                <!-- Checkbox cho từng sản phẩm -->
-                                <input type="checkbox" name="selected_${item.productID}" value="${item.productID}" class="product-checkbox" />
+                                <input type="checkbox" name="selected_${item.productID}" value="${item.productID}"
+                                       class="product-checkbox"/>
                             </td>
-                            <td><img src="${item.urlImage}" alt="image Fruit" style="width: 150px; height: 120px"></td>
+                            <td><img src="${item.urlImage}" alt="image Fruit" style="width: 180px; height: 150px"></td>
                             <td>
                                     ${item.productName}
                             </td>
                             <td>
-                                <fmt:formatNumber value="${item.price}" type="number" pattern="#,##0" />₫
+                                <fmt:formatNumber value="${item.price}" type="number" pattern="#,##0"/>₫
                             </td>
                             <td>
-                                <!-- Sử dụng class quantity và data-price để lắng nghe thay đổi -->
                                 <input type="number" class="quantity" name="quantity_${item.productID}"
-                                       value="${item.quantity}" min="1" data-price="${item.price}">
+                                       value="${item.quantity}" min="1" max="${product.quantity}"
+                                       data-price="${item.price}" required>
                             </td>
                             <td class="total-price">
-                                <fmt:formatNumber value="${item.price * item.quantity}" type="number" pattern="#,##0" />₫
+                                <fmt:formatNumber value="${item.price * item.quantity}" type="number" pattern="#,##0"/>₫
                             </td>
                             <td>
-                                <a href="/cart?action=removeProduct&id=${item.productID}">
-                                    <button type="button">Xóa</button>
-                                </a>
+                                <form action="/cart" method="POST">
+                                    <input type="hidden" name="action" value="removeProduct">
+                                    <input type="hidden" name="id" value="${item.productID}">
+                                    <button type="submit" style="background-color: white; border : none">
+                                        <img src="/images/trash.png" style="width: 30px; height: 35px"/>
+                                    </button>
+                                </form>
+
                             </td>
                         </tr>
                     </c:forEach>
@@ -75,20 +79,18 @@
 
         </form>
 
-
+        <footer>
+            <div class="total">
+                <p><strong>Tổng tiền: </strong><span id="totalAmount"></span></p>
+            </div>
+            <div class="checkout">
+                <a href="/checkout.jsp">
+                    <button class="checkout-btn">Thanh toán</button>
+                </a>
+            </div>
+        </footer>
     </c:if>
 </div>
-<footer>
-    <!-- Tổng tiền -->
-    <div class="total">
-        <p><strong>Tổng tiền: </strong><span id="totalAmount"></span></p>
-    </div>
-    <!-- Thanh toán -->
-    <div class="checkout">
-        <a href="/checkout.jsp"><button class="checkout-btn">Thanh toán</button></a>
-    </div>
-</footer>
-
 
 </body>
 </html>
