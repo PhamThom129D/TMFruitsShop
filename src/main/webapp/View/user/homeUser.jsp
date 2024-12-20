@@ -33,8 +33,8 @@
                 <a href="/user">Sản phẩm</a>
                 <ul class="dropdown-content">
                     <li><a href="/user?action=searchWithType&type=fruits">Trái cây</a></li>
-                    <li><a href="/user?action=searchWithType&type=vegetables" >Rau củ</a></li>
-                    <li><a href="/user?action=searchWithType&type=combo" >Combo</a></li>
+                    <li><a href="/user?action=searchWithType&type=vegetables">Rau củ</a></li>
+                    <li><a href="/user?action=searchWithType&type=combo">Combo</a></li>
                 </ul>
             </li>
             <li>
@@ -47,16 +47,24 @@
                     </c:if>
                 </a>
             </li>
-<%--            <li>--%>
-<%--                <a href="/login?action=logout">--%>
-<%--                    <button type="submit" onclick="confirmLogout()" style="background-color: transparent;--%>
-<%--                            border: none; color: white; font-size: 18px;">Đăng xuất</button>--%>
-<%--                </a>--%>
-<%--            </li>--%>
             <li>
-                <a href="/user?action=showAccount">
-                    <img src="${loggedInUser.urlAvatar}" alt="avt" style="width: 60px; height: 60px; border-radius: 50%;">
-                </a>
+                <div class="image-user">
+                    <button class="dropdown-button">
+                        <a href="/user?action=showAccount">
+                            <img src="${loggedInUser.urlAvatar}" alt="avt"
+                                 style="width: 60px; height: 60px; border-radius: 50%;">
+                        </a>
+                    </button>
+                    <div class="menu-info">
+                        <a href="/user?action=showAccount">Thông tin tài khoản</a>
+
+                        <a href="/login?action=logout">
+                            <button type="submit"onclick="confirmLogout()" style="background-color: transparent;
+                            border: none; color: white; font-size: 15px;">Đăng xuất
+                            </button>
+                        </a>
+                    </div>
+                </div>
             </li>
         </ul>
     </div>
@@ -103,6 +111,5 @@
         }
     }
 </script>
-
 </body>
 </html>
