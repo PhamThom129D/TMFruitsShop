@@ -133,7 +133,8 @@ a {
 #toggle-password:hover {
     opacity: 0.8;
 }
-.error-message{
+
+.error-message {
     text-align: left;
     font-size: 15px;
     color: red;

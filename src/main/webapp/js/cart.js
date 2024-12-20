@@ -1,77 +1,48 @@
-/* Set rates + misc */
-var taxRate = 0.05;
-var shippingRate = 15.00;
-var fadeTime = 300;
+// Hàm để cập nhật tổng tiền khi thay đổi số lượng hoặc checkbox
+function updateTotalPrice() {
+    var total = 0;
+    // Lặp qua tất cả các checkbox và kiểm tra nếu chúng được chọn
+    var selectedItems = document.querySelectorAll('.product-checkbox:checked');
 
+    selectedItems.forEach(function (checkbox) {
+        var row = checkbox.closest('tr');
+        var price = parseFloat(row.querySelector('.quantity').getAttribute('data-price'));
+        var quantity = parseInt(row.querySelector('.quantity').value);
+        var totalPrice = price * quantity;
 
-/* Assign actions */
-$('.product-quantity input').change( function() {
-    updateQuantity(this);
-});
+        // Cập nhật giá trị của cột "Tổng"
+        var totalCell = row.querySelector('.total-price');
+        totalCell.textContent = totalPrice.toLocaleString('vi-VN') + '₫';
 
-$('.product-removal button').click( function() {
-    removeItem(this);
-});
-
-
-/* Recalculate cart */
-function recalculateCart()
-{
-    var subtotal = 0;
-
-    /* Sum up row totals */
-    $('.product').each(function () {
-        subtotal += parseFloat($(this).children('.product-line-price').text());
+        // Cộng tổng vào
+        total += totalPrice;
     });
 
-    /* Calculate totals */
-    var tax = subtotal * taxRate;
-    var shipping = (subtotal > 0 ? shippingRate : 0);
-    var total = subtotal + tax + shipping;
-
-    /* Update totals display */
-    $('.totals-value').fadeOut(fadeTime, function() {
-        $('#cart-subtotal').html(subtotal.toFixed(2));
-        $('#cart-tax').html(tax.toFixed(2));
-        $('#cart-shipping').html(shipping.toFixed(2));
-        $('#cart-total').html(total.toFixed(2));
-        if(total == 0){
-            $('.checkout').fadeOut(fadeTime);
-        }else{
-            $('.checkout').fadeIn(fadeTime);
-        }
-        $('.totals-value').fadeIn(fadeTime);
-    });
+    // Cập nhật tổng tiền vào phần tổng
+    document.getElementById('totalAmount').textContent = total.toLocaleString('vi-VN') + '₫';
 }
 
+// Lắng nghe sự thay đổi khi người dùng thay đổi số lượng, checkbox hoặc trạng thái "Chọn tất cả"
+document.addEventListener('DOMContentLoaded', function () {
+    var quantityInputs = document.querySelectorAll('.quantity');
+    quantityInputs.forEach(function (input) {
+        input.addEventListener('input', updateTotalPrice);
+    });
 
-/* Update quantity */
-function updateQuantity(quantityInput)
-{
-    /* Calculate line price */
-    var productRow = $(quantityInput).parent().parent();
-    var price = parseFloat(productRow.children('.product-price').text());
-    var quantity = $(quantityInput).val();
-    var linePrice = price * quantity;
+    var checkboxes = document.querySelectorAll('.product-checkbox');
+    checkboxes.forEach(function (checkbox) {
+        checkbox.addEventListener('change', updateTotalPrice);
+    });
 
-    /* Update line price display and recalc cart totals */
-    productRow.children('.product-line-price').each(function () {
-        $(this).fadeOut(fadeTime, function() {
-            $(this).text(linePrice.toFixed(2));
-            recalculateCart();
-            $(this).fadeIn(fadeTime);
+    // Lắng nghe sự thay đổi của checkbox "Chọn tất cả"
+    document.getElementById("selectAll").addEventListener("change", function () {
+        var checkboxes = document.querySelectorAll(".product-checkbox");
+        checkboxes.forEach(function (checkbox) {
+            checkbox.checked = document.getElementById("selectAll").checked;
         });
+        updateTotalPrice();
     });
-}
 
-
-/* Remove item from cart */
-function removeItem(removeButton)
-{
-    /* Remove row from DOM and recalc cart total */
-    var productRow = $(removeButton).parent().parent();
-    productRow.slideUp(fadeTime, function() {
-        productRow.remove();
-        recalculateCart();
-    });
-}
+    // Cập nhật tổng tiền ngay khi trang được tải
+    updateTotalPrice();
+});

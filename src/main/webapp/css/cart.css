@@ -1,235 +1,90 @@
-
-
-
-/* Global "table" column settings */
-.product-image { float: left; width: 20%; }
-.product-details { float: left; width: 37%; }
-.product-price { float: left; width: 12%; }
-.product-quantity { float: left; width: 10%; }
-.product-removal { float: left; width: 9%; }
-.product-line-price { float: left; width: 12%; text-align: right; }
-
-
-/* This is used as the traditional .clearfix class */
-.group:before,
-.group:after {
-    content: '';
-    display: table;
-}
-.group:after {
-    clear: both;
-}
-.group {
-    zoom: 1;
-}
-
-
-
-/* Apply dollar signs */
-.product .product-price:before, .product .product-line-price:before, .totals-value:before {
-    content: '$';
-}
-
-
-/* Body/Header stuff */
 body {
-    padding: 0px 30px 30px 20px;
-    font-weight: 100;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
 }
 
-h1 {
-    font-weight: 100;
+/* Đảm bảo body và html chiếm toàn bộ chiều cao màn hình */
+body, html {
+    height: 90%;
+    margin: 0;
 }
 
-label {
-    color: #aaa;
+/* Container của bảng giỏ hàng */
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh; /* Chiều cao của container sẽ bằng chiều cao của màn hình */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Cho phép cuộn dọc nếu nội dung vượt quá chiều cao */
+    box-sizing: border-box; /* Đảm bảo padding không làm container vượt ra ngoài */
 }
 
-.shopping-cart {
-    margin-top: -45px;
-}
-
-
-/* Column headers */
-.column-labels {
-    label {
-        padding-bottom: 15px;
-        margin-bottom: 15px;
-        border-bottom: 1px solid #eee;
-    }
-
-    .product-image, .product-details, .product-removal {
-        text-indent: -9999px;
-    }
-}
-
-
-/* Product entries */
-.product {
+h2 {
+    text-align: center;
     margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #eee;
-
-    .product-image {
-        text-align: center;
-        img {
-            width: 100px;
-        }
-    }
-
-    .product-details {
-        .product-title {
-            margin-right: 20px;
-        }
-        .product-description {
-            margin: 5px 20px 5px 0;
-            line-height: 1.4em;
-        }
-    }
-
-    .product-quantity {
-        input {
-            width: 40px;
-
-        }
-    }
-
-    .remove-product {
-        border: 0;
-        padding: 4px 8px;
-        background-color: #c66;
-        color: #fff;
-        font-size: 12px;
-        border-radius: 3px;
-    }
-
-    .remove-product:hover {
-        background-color: #a44;
-    }
 }
 
-
-/* Totals section */
-.totals {
-    .totals-item {
-        float: right;
-        clear: both;
-        width: 100%;
-        margin-bottom: 10px;
-
-        label {
-            float: left;
-            clear: both;
-            width: 79%;
-            text-align: right;
-        }
-
-        .totals-value {
-            float: right;
-            width: 21%;
-            text-align: right;
-        }
-    }
-
+.cart-table-container {
+    flex-grow: 1; /* Đảm bảo bảng giỏ hàng chiếm tối đa không gian có sẵn */
+    overflow-y: auto;
+    border: 1px solid #678c67; /* Thêm viền cho bảng */
+    margin-bottom: 40px; /* Khoảng cách dưới bảng */
 }
 
+/* Các thẻ table, td, th... */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cart-table th, .cart-table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.cart-table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Footer */
+footer {
+    display: flex;
+    justify-content: space-between; /* Đặt phần tử ở 2 bên trái và phải */
+    background-color: #4CAF50;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 97%;
+    box-sizing: border-box;
+}
+
+/* Tổng tiền bên phải */
+.total {
+    text-align: left;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Nút thanh toán bên trái */
 .checkout {
-    float: right;
-    border: 0;
-    margin-top: 20px;
-    padding: 6px 25px;
-    background-color: #6b6;
-    color: #fff;
-    font-size: 25px;
-    border-radius: 3px;
+    text-align: right;
+    height: 30px;
 }
 
-.checkout:hover {
-    background-color: #494;
+.checkout-btn {
+    background-color: #4CAF50;
+    padding-top: 19px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    height: 40px;
 }
 
-/* Make adjustments for tablet */
-@media screen and (max-width: 650px) {
-
-    .shopping-cart {
-        margin: 0;
-        padding-top: 20px;
-        border-top: 1px solid #eee;
-    }
-
-    .column-labels {
-        display: none;
-    }
-
-    .product-image {
-        float: right;
-        width: auto;
-        img {
-            margin: 0 0 10px 10px;
-        }
-    }
-
-    .product-details {
-        float: none;
-        margin-bottom: 10px;
-        width: auto;
-    }
-
-    .product-price {
-        clear: both;
-        width: 70px;
-    }
-
-    .product-quantity {
-        width: 100px;
-        input {
-            margin-left: 20px;
-        }
-    }
-
-    .product-quantity:before {
-        content: 'x';
-    }
-
-    .product-removal {
-        width: auto;
-    }
-
-    .product-line-price {
-        float: right;
-        width: 70px;
-    }
-
-}
-
-
-/* Make more adjustments for phone */
-@media screen and (max-width: 350px) {
-
-    .product-removal {
-        float: right;
-    }
-
-    .product-line-price {
-        float: right;
-        clear: left;
-        width: auto;
-        margin-top: 10px;
-    }
-
-    .product .product-line-price:before {
-        content: 'Item Total: $';
-    }
-
-    .totals {
-        .totals-item {
-            label {
-                width: 60%;
-            }
-
-            .totals-value {
-                width: 40%;
-            }
-        }
-    }
-}
