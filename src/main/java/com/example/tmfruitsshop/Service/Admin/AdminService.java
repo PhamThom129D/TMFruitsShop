@@ -2,8 +2,12 @@ package com.example.tmfruitsshop.Service.Admin;
 
 import com.example.tmfruitsshop.Model.Product;
 import com.example.tmfruitsshop.Service.ConnectDatabase;
+import com.example.tmfruitsshop.Service.User.Order;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -146,6 +150,23 @@ public class AdminService implements InAdminService {
     public List<Product> searchProductByName(String name) {
         return searchProductWithName(name);
     }
+
+    @Override
+    public void addOrderAndDetails(int userID, int productID, int quantity) {
+        String query = "{CALL AddOrder(?, ?, ?)}";
+
+        try (Connection conn = ConnectDatabase.getConnection();
+             CallableStatement stmt = conn.prepareCall(query)) {
+
+            stmt.setInt(1, userID);
+            stmt.setInt(2, productID);
+            stmt.setInt(3, quantity);
+            stmt.execute();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private Product mapResultSetToProduct(ResultSet rs) throws SQLException {
         int productID = rs.getInt("productID");

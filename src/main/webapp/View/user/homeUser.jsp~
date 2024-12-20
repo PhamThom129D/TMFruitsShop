@@ -47,12 +47,12 @@
                     </c:if>
                 </a>
             </li>
-            <li>
-                <a href="/login?action=logout">
-                    <button type="submit" onclick="confirmLogout()" style="background-color: transparent;
-                            border: none; color: white; font-size: 18px;">Đăng xuất</button>
-                </a>
-            </li>
+<%--            <li>--%>
+<%--                <a href="/login?action=logout">--%>
+<%--                    <button type="submit" onclick="confirmLogout()" style="background-color: transparent;--%>
+<%--                            border: none; color: white; font-size: 18px;">Đăng xuất</button>--%>
+<%--                </a>--%>
+<%--            </li>--%>
             <li>
                 <a href="/user?action=showAccount">
                     <img src="${loggedInUser.urlAvatar}" alt="avt" style="width: 60px; height: 60px; border-radius: 50%;">

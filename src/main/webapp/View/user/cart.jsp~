@@ -42,10 +42,8 @@
                         <tr>
                             <td>${status.index + 1}</td>
                             <td>
-                                <form action="/cart" method="POST">
-                                    <input type="checkbox" name="selected_${item.productID}" value="${item.productID}"
-                                           class="product-checkbox" ${item.checked ? 'checked' : ''} onchange="this.form.submit()" />
-                                </form>
+                                <input type="checkbox" name="selected_${item.productID}" value="${item.productID}"
+                                       class="product-checkbox"/>
                             </td>
                             <td><img src="${item.urlImage}" alt="image Fruit" style="width: 180px; height: 150px"></td>
                             <td>

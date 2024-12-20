@@ -1,7 +1,10 @@
 package com.example.tmfruitsshop.Service.Admin;
 
 import com.example.tmfruitsshop.Model.Product;
+import com.example.tmfruitsshop.Service.User.Order;
+import com.mysql.cj.x.protobuf.MysqlxCrud;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface InAdminService {
@@ -21,4 +24,6 @@ public interface InAdminService {
     List<Product> searchProductByPrice(int min, int max);
 
     List<Product> searchProductByName(String name);
+
+    void addOrderAndDetails(int userID, int productID, int quantity);
 }
