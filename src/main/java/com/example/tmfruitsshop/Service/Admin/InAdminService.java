@@ -21,4 +21,6 @@ public interface InAdminService {
     List<Product> searchProductByPrice(int min, int max);
 
     List<Product> searchProductByName(String name);
+    int addOrder(int userID);
+    void addOrderDetail(int orderID,int productID,int quantity);
 }

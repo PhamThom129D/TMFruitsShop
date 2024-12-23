@@ -42,7 +42,7 @@
                         <tr>
                             <td>${status.index + 1}</td>
                             <td>
-                                <input type="checkbox" name="selected" value="${item.productID}"
+                                <input type="checkbox" name="selected_${item.productID}" value="${item.productID}"
                                        class="product-checkbox"/>
                             </td>
                             <td><img src="${item.urlImage}" alt="image Fruit" style="width: 180px; height: 150px"></td>

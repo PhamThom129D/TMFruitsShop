@@ -149,10 +149,7 @@ footer {
     padding: 10px;
 }
 .menu-product a {
-    font-size: 18px;
-    text-decoration: none;
-    color: white;
-}
+    font-size: 18px;}
 .menu-product .dropdown {
     position: relative;
 }

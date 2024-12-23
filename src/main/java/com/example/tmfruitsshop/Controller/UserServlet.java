@@ -1,6 +1,8 @@
 package com.example.tmfruitsshop.Controller;
 
+import com.example.tmfruitsshop.Model.CartItem;
 import com.example.tmfruitsshop.Model.Product;
+import com.example.tmfruitsshop.Model.User;
 import com.example.tmfruitsshop.Service.Admin.AdminService;
 import com.example.tmfruitsshop.Service.Admin.InAdminService;
 
@@ -9,8 +11,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.tmfruitsshop.Controller.CartServlet.updateCartItemCount;
 
 @WebServlet(value = "/user")
 public class UserServlet extends HttpServlet {
@@ -51,7 +57,36 @@ public class UserServlet extends HttpServlet {
             case "searchProduct":
                 searchProduct(req, resp);
                 break;
+            case "checkout":
+                System.out.println("check");
+                checkoutCart(req, resp);
+                break;
         }
+    }
+    private void checkoutCart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<CartItem> cart = (List<CartItem>) req.getSession().getAttribute("cart");
+        if (cart == null || cart.isEmpty()) {
+            resp.sendRedirect("/user?action=showCart");
+            return;
+        }
+        double totalAmount = 0;
+        HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("loggedInUser");
+        List<CartItem> cartAfterCheckout = new ArrayList<>();
+        int orderID = adminService.addOrder(user.getUserID());
+        for (CartItem item : cart) {
+            if(!item.isChecked()){
+                totalAmount += item.getPrice() * item.getQuantity();
+                adminService.addOrderDetail(orderID, item.getProductID(), item.getQuantity());
+            }else {
+                cartAfterCheckout.add(item);
+            }
+        }
+        System.out.println(cartAfterCheckout);
+        req.getSession().setAttribute("cart", cartAfterCheckout);
+        updateCartItemCount(req, cart);
+        req.setAttribute("totalAmount", totalAmount);
+        resp.sendRedirect("/user");
     }
 
     private void searchWithType(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

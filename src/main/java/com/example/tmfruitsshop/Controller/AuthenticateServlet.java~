@@ -36,7 +36,7 @@ public class AuthenticateServlet extends HttpServlet {
                 break;
             case "logout":
                 HttpSession session = req.getSession();
-                session.invalidate();
+                session.setMaxInactiveInterval(60 * 60);
                 resp.sendRedirect("View/authenticate/login.jsp");
                 break;
         }
@@ -93,6 +93,7 @@ public class AuthenticateServlet extends HttpServlet {
                     req.getRequestDispatcher("View/admin/homeAdmin.jsp").forward(req, resp);
                     break;
                 case "user":
+                    session.setAttribute("loggedInUser", user);
                     resp.sendRedirect("/user");
                     break;
             }
