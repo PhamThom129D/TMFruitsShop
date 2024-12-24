@@ -1,3 +1,4 @@
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -42,7 +43,7 @@
                         <tr>
                             <td>${status.index + 1}</td>
                             <td>
-                                <input type="checkbox" name="selected" value="${item.productID}"
+                                <input type="checkbox" name="selected_${item.productID}" value="${item.productID}"
                                        class="product-checkbox"/>
                             </td>
                             <td><img src="${item.urlImage}" alt="image Fruit" style="width: 180px; height: 150px"></td>
@@ -84,14 +85,9 @@
                 <p><strong>Tổng tiền: </strong><span id="totalAmount"></span></p>
             </div>
             <div class="checkout">
-                <c:if test="${not empty cart}">
-                    <form action="/user" method="POST">
-                        <input type="hidden" name="action" value="checkout">
-                        <input type="hidden" id="checkedItemsInput" name="checkedItems" value="[]">
-                        <button type="submit" class="checkout-btn">Thanh toán</button>
-                    </form>
-                </c:if>
-
+                <a href="/checkout.jsp">
+                    <button class="checkout-btn">Thanh toán</button>
+                </a>
             </div>
         </footer>
     </c:if>

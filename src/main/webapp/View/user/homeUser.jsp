@@ -83,7 +83,7 @@
                     <h3>${product.productName}</h3>
                     <p style="font-size: small">Số lượng : ${product.quantity}</p>
                     <p class="price">
-                        <fmt:formatNumber value="${product.price}" type="number" pattern="#,##0"/>₫
+                        <fmt:formatNumber value="${product.price}" type="number" pattern="#,##0" />₫
                     </p>
                     <a href="/cart?action=showProductDetail&id=${product.productID}">
                         <button class="show-detail">Chi tiết sản phẩm</button>

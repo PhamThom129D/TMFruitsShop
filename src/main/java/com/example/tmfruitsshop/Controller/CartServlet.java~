@@ -73,7 +73,7 @@ import java.util.List;
                     resp.sendRedirect("/user?action=showCart");
                     break;
                 default:
-                    req.getRequestDispatcher("/user").forward(req , resp);
+                    req.getRequestDispatcher("/user").forward(req, resp);
                     break;
             }
         }

@@ -20,6 +20,14 @@
         </div>
         <div class="menu-product">
             <a href="/user">Trang chủ</a>
+            <li class="dropdown">
+                <a href="/user">Sản phẩm</a>
+                <ul class="dropdown-content">
+                    <li><a href="/user?action=searchWithType&type=fruits">Trái cây</a></li>
+                    <li><a href="/user?action=searchWithType&type=vegetables">Rau củ</a></li>
+                    <li><a href="/user?action=searchWithType&type=combo">Combo</a></li>
+                </ul>
+            </li>
 
         </div>
 
@@ -32,14 +40,6 @@
 
         <!-- Menu -->
         <ul class="menu">
-            <li class="dropdown">
-                <a href="/user">Sản phẩm</a>
-                <ul class="dropdown-content">
-                    <li><a href="/user?action=searchWithType&type=fruits">Trái cây</a></li>
-                    <li><a href="/user?action=searchWithType&type=vegetables">Rau củ</a></li>
-                    <li><a href="/user?action=searchWithType&type=combo">Combo</a></li>
-                </ul>
-            </li>
             <li>
                 <a href="/user?action=showCart" style="position: relative;">
                     <img src="/images/cart.png" alt="Gio hang" style="width: 50px; height: 45px">
