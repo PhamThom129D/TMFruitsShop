@@ -12,7 +12,6 @@
 <div class="login-box">
     <h1>Đăng ký</h1>
     <form id="register-form" action="/login?action=register" method="post" onsubmit="return validateForm()">
-        <!-- Step 1 -->
         <div id="step-1" class="step">
             <div class="user-box">
                 <input type="text" id="urlAvatar" name="urlAvatar" required>

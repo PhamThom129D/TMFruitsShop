@@ -1,126 +1,87 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: helvetica;
-    font-size: 14px;
+body{
+    background-color: #f6f5f7;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
 }
 
-ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-.container {
-    width: 100vw;
-    height: 100vh;
-    display: grid;
-    grid-template: 200px 1fr / 200px  1fr;
-    grid-template-areas:
-    "header main"
-    "menu main"
-}
-
-.header {
-    grid-area: header;
-    background: #e35;
+.container{
     position: relative;
-}
-
-/* Căn giữa các phần tử trong user-info */
-.user-info {
-    justify-content: center; /* Căn giữa theo chiều ngang */
-    align-items: center; /* Căn giữa theo chiều dọc */
-    list-style-type: none; /* Xóa dấu chấm của danh sách */
-}
-
-/* CSS cho các phần tử li để tạo khoảng cách giữa chúng */
-.user-info-item {
-    margin: 10px; /* Thêm khoảng cách đều giữa các li */
-    display: flex; /* Đảm bảo li có thể căn giữa nội dung */
-    align-items: center; /* Căn giữa nội dung của li theo chiều dọc */
-}
-
-/* CSS cho ảnh người dùng */
-.user-avatar {
-    width: 40px; /* Kích thước chiều rộng ảnh */
-    height: 40px; /* Kích thước chiều cao ảnh */
-    border-radius: 50%; /* Làm cho ảnh hình tròn */
-    object-fit: cover; /* Đảm bảo ảnh vừa với khung */
-    border: 2px solid black; /* Thêm viền quanh ảnh */
-}
-
-
-.user-settings {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #ccc;
-}
-
-.user-settings {
-    /*   padding: 10px; */
-    display: grid;
-    grid-template-columns:repeat(3, 1fr);
-    /*   grid-gap: 10px; */
-    /*   padding: 10px; */
-}
-
-.user-settings li {
+    width: 800px;
+    background: rgba(242, 248, 240, 0.31);
+    box-shadow: 0 15px 25px rgba(91, 225, 45, 0.4);
+    border-radius: 15px;
     text-align: center;
-    background: #000;
-    color: #fff;
-    padding: 10px 5px;
-    cursor: pointer;
-    transition: all 200ms ease-in-out;
+    backdrop-filter: blur(5px);
+    flex-direction: row;
+    height: 450px;
 }
 
-.user-settings li:hover {
-    background: #fff;
-    color: #000;
+.menu-info{
+    background-image: url("https://i.pinimg.com/736x/ba/ce/06/bace0612a6393082b922a5b7bed78aa7.jpg");
+    background-size: 360px 450px;
+    object-fit: cover;
+    border-radius: 15px;
+    height: 100%;
+    width: 45%;
+    float: left;
 }
 
-.menu {
-    grid-area: menu;
-    background-color: #3ae;
-    /*   padding-top: 30px; */
-    overflow: auto;
+.menu-info img{
+    margin-top: 40px;
+    width: 170px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid black;
 }
 
-.menu ul {
-    /*   padding:5px 10px; */
-    /*   background: #ccc; */
+.menu-account a {
+    text-decoration: none;
 }
 
-.menu li > span {
-    display: block;
-    /*   color: red; */
-    padding: 10px 0 5px 5px;
-    font-size: 1.1em;
+.menu-info p {
+    font-size: 18px;
+    font-weight: normal;
 }
 
-.menu > ul > li {
-    cursor: pointer;
+.menu-account button {
+    width: 200px;
+    height: 35px;
+    font-size: 16px;
+    margin: 10px;
+    border-radius: 20px;
+    border: 2px solid blue;
+    background-color: transparent;
 }
 
-.menu li li {
-    cursor: pointer;
-    /*   margin-left: 10px; */
-    /*   background: #000; */
-    color: #fff;
-    padding: 10px;
-    margin-bottom: 5px;
-    transition: background 500ms ease-in-out;
+.menu-manage {
+    background-image: url("https://i.pinimg.com/736x/53/2e/23/532e23c344e1214f28d59f640ceb58b1.jpg");
+    background-size: 450px 450px;
+    border-radius: 15px;
+    height: 100%;
+    width: 55%;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.menu-manage a {
+    font-size: 20px;
+}
+.menu-manage button {
+    background-color: transparent;
+    margin: 25px;
+    font-size: 16px;
+    border-radius: 15px;
+    width: 220px;
+    height: 50px;
 }
 
-.menu li li:hover {
-    background: #ccc;
-}
 
-.main {
-    /*   padding: 10px; */
-    grid-area: main;
-    background-color: #ae9;
-    position: relative;
-}
