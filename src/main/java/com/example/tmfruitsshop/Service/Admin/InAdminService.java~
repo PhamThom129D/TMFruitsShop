@@ -2,7 +2,10 @@ package com.example.tmfruitsshop.Service.Admin;
 
 import com.example.tmfruitsshop.Model.CartItem;
 import com.example.tmfruitsshop.Model.Product;
+import com.example.tmfruitsshop.Service.User.Order;
+import com.mysql.cj.x.protobuf.MysqlxCrud;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface InAdminService {
@@ -22,10 +25,15 @@ public interface InAdminService {
     List<Product> searchProductByPrice(int min, int max);
 
     List<Product> searchProductByName(String name);
+<<<<<<< HEAD
+
+    void addOrderAndDetails(int userID, int productID, int quantity);
+=======
     int addOrder(int userID);
     void addOrderDetail(int orderID,int productID,int quantity);
     List<CartItem> getOrderDetail(int orderID);
 
     void updateStatusOrder(int orderID,String status,String paymentMethod);
     void addInvoice(int orderID,double total);
+>>>>>>> bdcafcf67fa75b1d22387dc8da9253ed168b55b9
 }

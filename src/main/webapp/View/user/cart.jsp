@@ -8,18 +8,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giỏ Hàng</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cart.css">
-    <script src="${pageContext.request.contextPath}/js/cart.js"></script>
+    <script src="${pageContext.request.contextPath}/js/cart.js">
+    </script>
 </head>
 <body>
 
 <div class="container">
     <a href="/user">Quay lại trang chủ</a>
+    <%-- Kiểm tra và hiển thị lỗi từ Servlet --%>
+    <c:if test="${not empty error}">
+        <script>
+            alert("${error}");
+        </script>
+    </c:if>
     <c:if test="${empty cart}">
         <p>Giỏ hàng của bạn đang trống. Hãy thêm sản phẩm vào giỏ hàng!</p>
     </c:if>
 
     <c:if test="${not empty cart}">
-        <form action="/cart" method="POST">
+        <form action="/user?action=checkout" method="post" id="cartForm">
             <label>
                 <input type="checkbox" id="selectAll"/> Chọn tất cả
             </label>
@@ -42,10 +49,8 @@
                         <tr>
                             <td>${status.index + 1}</td>
                             <td>
-                                <form action="/cart" method="POST">
-                                    <input type="checkbox" name="selected_${item.productID}" value="${item.productID}"
-                                           class="product-checkbox" ${item.checked ? 'checked' : ''} onchange="this.form.submit()" />
-                                </form>
+                                <input type="checkbox" name="selectedProduct" value="${item.productID}"
+                                       class="product-checkbox">
                             </td>
                             <td><img src="${item.urlImage}" alt="image Fruit" style="width: 180px; height: 150px"></td>
                             <td>
@@ -55,10 +60,14 @@
                                 <fmt:formatNumber value="${item.price}" type="number" pattern="#,##0"/>₫
                             </td>
                             <td>
-                                <input type="number" class="quantity" name="quantity_${item.productID}"
-                                       value="${item.quantity}" min="1" max="${product.quantity}"
-                                       data-price="${item.price}" required>
+                                <div class="quantity-container">
+                                    <button type="button" class="decrease-btn">-</button>
+                                    <input type="number" class="quantity" name="quantity_${item.productID}"
+                                           value="${item.quantity}" min="1" data-price="${item.price}" required>
+                                    <button type="button" class="increase-btn">+</button>
+                                </div>
                             </td>
+
                             <td class="total-price">
                                 <fmt:formatNumber value="${item.price * item.quantity}" type="number" pattern="#,##0"/>₫
                             </td>
@@ -78,19 +87,15 @@
                 </table>
             </div>
 
-
+            <footer>
+                <div class="total">
+                    <p><strong>Tổng tiền: </strong><span id="totalAmount"></span></p>
+                </div>
+                <div class="checkout">
+                    <button class="checkout-btn" type="submit">Thanh toán</button>
+                </div>
+            </footer>
         </form>
-
-        <footer>
-            <div class="total">
-                <p><strong>Tổng tiền: </strong><span id="totalAmount"></span></p>
-            </div>
-            <div class="checkout">
-                <form action="/cart?action=checkout" method="post">
-                    <button class="checkout-btn">Thanh toán</button>
-                </form>
-            </div>
-        </footer>
     </c:if>
 </div>
 

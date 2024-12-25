@@ -72,6 +72,7 @@ public class AuthenticateServlet extends HttpServlet {
         String phonenumber = req.getParameter("phonenumber");
         String address = req.getParameter("address");
         String urlAvatar = req.getParameter("urlAvatar");
+
         User user = new User(username, password, email, phonenumber, address, urlAvatar);
         userService.register(user);
         resp.sendRedirect("View/authenticate/login.jsp");

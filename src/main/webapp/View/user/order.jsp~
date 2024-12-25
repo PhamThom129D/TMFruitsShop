@@ -1,0 +1,146 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Đơn đặt hàng</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        table th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        img {
+            max-width: 100px;
+            height: auto;
+        }
+        .order-info {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        .order-info label {
+            font-weight: bold;
+        }
+        .payment-method {
+            margin: 20px 0;
+            text-align: center;
+        }
+        button {
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        h3 {
+            text-align: right;
+            color: #333;
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .button-group button {
+            background-color: #007bff;
+        }
+        .button-group button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Chi tiết đơn đặt hàng</h1>
+
+    <div class="order-info">
+        <p><label>Mã đơn hàng:</label> ${orderID}</p>
+        <p><label>Tên người nhận:</label> ${loggedInUser.username}</p>
+        <p><label>Địa chỉ:</label> ${loggedInUser.address}</p>
+        <p><label>Số điện thoại:</label> ${loggedInUser.phonenumber}</p>
+        <p><label>Ngày đặt hàng:</label> ${orderDate}</p>
+    </div>
+
+    <table>
+        <tr>
+            <th>STT</th>
+            <th>Ảnh sản phẩm</th>
+            <th>Tên sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Giá</th>
+            <th>Thành tiền</th>
+        </tr>
+        <c:forEach items="${orderList}" var="item" varStatus="status">
+            <tr>
+                <td>${status.index + 1}</td>
+                <td><img src="${item.urlImage}" alt="image Fruit"></td>
+                <td>${item.productName}</td>
+                <td>${item.quantity}</td>
+                <td>
+                    <fmt:formatNumber value="${item.price}" type="number" pattern="#,##0"/>đ
+                </td>
+                <td>
+                    <fmt:formatNumber value="${item.price * item.quantity}" type="number" pattern="#,##0"/>đ
+                </td>
+            </tr>
+        </c:forEach>
+    </table>
+
+    <h3>Tổng tiền: <fmt:formatNumber value="${totalAmount}" type="number" pattern="#,##0"/>đ</h3>
+    <form action="/user?action=payOrder" method="POST">
+        <input type="hidden" name="orderID" value="${orderID}">
+        <div class="payment-method">
+            <label>Phương thức thanh toán:
+                <select name="paymentMethod">
+                    <option value="COD">Thanh toán sau khi nhận hàng</option>
+                    <option value="BANKING">Chuyển khoản ngân hàng</option>
+                </select>
+            </label>
+        </div>
+        <div class="button-group">
+            <button type="submit">Thanh toán</button>
+            <a href="/user?action=cancelOrder&orderID=${orderID}"><button type="button">Hủy đơn</button></a>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>

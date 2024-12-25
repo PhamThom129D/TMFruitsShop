@@ -6,15 +6,29 @@ public class CartItem {
     private String productName;
     private double price;
     private int quantity;
-    private boolean checked;
+    private boolean isChecked;
 
-    public CartItem(int productID, String urlImage, String productName, double price, int quantity, boolean checked) {
+    public CartItem(int productID, String urlImage, String productName, double price, int quantity) {
         this.productID = productID;
         this.urlImage = urlImage;
         this.productName = productName;
         this.price = price;
         this.quantity = quantity;
-        this.checked = checked;
+        this.isChecked = false;
+    }
+    public CartItem(String productName, double price, int quantity, String urlImage) {
+    this.productName = productName;
+    this.price = price;
+    this.quantity = quantity;
+    this.urlImage = urlImage;
+    }
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
     }
 
     public String getUrlImage() {
@@ -57,14 +71,6 @@ public class CartItem {
         this.quantity = quantity;
     }
 
-    public boolean isChecked() {
-        return checked;
-    }
-
-    public void setChecked(boolean checked) {
-        this.checked = checked;
-    }
-
     @Override
     public String toString() {
         return "CartItem{" +
@@ -73,7 +79,7 @@ public class CartItem {
                 ", productName='" + productName + '\'' +
                 ", price=" + price +
                 ", quantity=" + quantity +
-                ", checked=" + checked +
+                ", isChecked=" + isChecked +
                 '}';
     }
 }

@@ -30,9 +30,9 @@ function validateStep1() {
         emailMessage.style.color = 'red';
         return false;
     } else {
-        emailField.style.borderColor = 'green';
+        emailField.style.borderColor = ' rgb(255, 200, 47)';
         emailMessage.textContent = 'Email hợp lệ';
-        emailMessage.style.color = 'green';
+        emailMessage.style.color = ' rgb(255, 200, 47)';
     }
 
     const passwordField = document.getElementById('password');
@@ -43,9 +43,9 @@ function validateStep1() {
         passwordMessage.style.color = 'red';
         return false;
     } else {
-        passwordField.style.borderColor = 'green';
+        passwordField.style.borderColor = ' rgb(255, 200, 47)';
         passwordMessage.textContent = 'Mật khẩu hợp lệ';
-        passwordMessage.style.color = 'green';
+        passwordMessage.style.color = ' rgb(255, 200, 47)';
     }
 
     const rePasswordField = document.getElementById('rePassword');
@@ -56,9 +56,9 @@ function validateStep1() {
         rePasswordMessage.style.color = 'red';
         return false;
     } else {
-        rePasswordField.style.borderColor = 'green';
+        rePasswordField.style.borderColor = ' rgb(255, 200, 47)';
         rePasswordMessage.textContent = 'Mật khẩu khớp';
-        rePasswordMessage.style.color = 'green';
+        rePasswordMessage.style.color = ' rgb(255, 200, 47)';
     }
 
     return true;
@@ -84,9 +84,9 @@ function validateStep2() {
     } else {
         const urlAvatarField = document.getElementById('urlAvatar');
         const urlAvatarMessage = document.getElementById('urlAvatar-message');
-        urlAvatarField.style.borderColor = 'green';
+        urlAvatarField.style.borderColor = ' rgb(255, 200, 47)';
         urlAvatarMessage.textContent = 'URL ảnh hợp lệ';
-        urlAvatarMessage.style.color = 'green';
+        urlAvatarMessage.style.color = ' rgb(255, 200, 47)';
     }
 
     const usernameField = document.querySelector('input[name="username"]');
@@ -97,9 +97,9 @@ function validateStep2() {
         usernameMessage.style.color = 'red';
         return false;
     } else {
-        usernameField.style.borderColor = 'green';
+        usernameField.style.borderColor = ' rgb(255, 200, 47)';
         usernameMessage.textContent = 'Tên người dùng hợp lệ';
-        usernameMessage.style.color = 'green';
+        usernameMessage.style.color = ' rgb(255, 200, 47)';
     }
 
     const phoneField = document.querySelector('input[name="phonenumber"]');
@@ -110,9 +110,9 @@ function validateStep2() {
         phoneMessage.style.color = 'red';
         return false;
     } else {
-        phoneField.style.borderColor = 'green';
+        phoneField.style.borderColor = ' rgb(255, 200, 47)';
         phoneMessage.textContent = 'Số điện thoại hợp lệ';
-        phoneMessage.style.color = 'green';
+        phoneMessage.style.color = ' rgb(255, 200, 47)';
     }
 
     const addressField = document.querySelector('input[name="address"]');
@@ -123,9 +123,9 @@ function validateStep2() {
         addressMessage.style.color = 'red';
         return false;
     } else {
-        addressField.style.borderColor = 'green';
+        addressField.style.borderColor = ' rgb(255, 200, 47)';
         addressMessage.textContent = 'Địa chỉ hợp lệ';
-        addressMessage.style.color = 'green';
+        addressMessage.style.color = ' rgb(255, 200, 47)';
     }
 
     return true;

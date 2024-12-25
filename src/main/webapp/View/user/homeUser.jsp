@@ -18,17 +18,8 @@
         <div class="logo">
             <a href="/user"><img src="images/logo.png" alt="Logo" style="width: 100px; height: 100px"></a>
         </div>
-        <!-- Menu -->
-        <ul class="menu">
-            <li><a href="/user">Trang chủ</a></li>
-            <li>
-                <div class="search-container">
-                    <form action="/user?action=searchProduct" method="post">
-                        <button type="submit">Tìm kiếm</button>
-                        <input type="text" placeholder="Tìm kiếm" name="keyword">
-                    </form>
-                </div>
-            </li>
+        <div class="menu-product">
+            <a href="/user">Trang chủ</a>
             <li class="dropdown">
                 <a href="/user">Sản phẩm</a>
                 <ul class="dropdown-content">
@@ -37,9 +28,21 @@
                     <li><a href="/user?action=searchWithType&type=combo">Combo</a></li>
                 </ul>
             </li>
+
+        </div>
+
+        <!-- Search -->
+        <div class="search-container">
+            <form action="/user?action=searchProduct" method="post">
+                <input type="text" placeholder="Tìm kiếm sản phẩm" name="keyword">
+            </form>
+        </div>
+
+        <!-- Menu -->
+        <ul class="menu">
             <li>
                 <a href="/user?action=showCart" style="position: relative;">
-                    Giỏ hàng
+                    <img src="/images/cart.png" alt="Gio hang" style="width: 50px; height: 45px">
                     <c:if test="${not empty sessionScope.cartItemCount and sessionScope.cartItemCount > 0}">
                         <span style="position: absolute; top: -5px; right: -5px; background-color: red; color: white; border-radius: 50%; padding: 3px 7px; font-size: 12px; font-weight: bold;">
                                 ${sessionScope.cartItemCount}
@@ -57,9 +60,9 @@
                     </button>
                     <div class="menu-info">
                         <a href="/user?action=showAccount">Thông tin tài khoản</a>
-
+                        <a href="/user?action=showOrderHistory">Lịch sử mua hàng</a>
                         <a href="/login?action=logout">
-                            <button type="submit"onclick="confirmLogout()" style="background-color: transparent;
+                            <button type="submit" onclick="confirmLogout()" style="background-color: transparent;
                             border: none; color: white; font-size: 15px;">Đăng xuất
                             </button>
                         </a>
@@ -69,6 +72,7 @@
         </ul>
     </div>
 </header>
+
 
 <!-- Main Content -->
 <main>
@@ -80,7 +84,7 @@
                     <h3>${product.productName}</h3>
                     <p style="font-size: small">Số lượng : ${product.quantity}</p>
                     <p class="price">
-                        <fmt:formatNumber value="${product.price}" type="number" pattern="#,##0"/>₫
+                        <fmt:formatNumber value="${product.price}" type="number" pattern="#,##0" />₫
                     </p>
                     <a href="/cart?action=showProductDetail&id=${product.productID}">
                         <button class="show-detail">Chi tiết sản phẩm</button>
