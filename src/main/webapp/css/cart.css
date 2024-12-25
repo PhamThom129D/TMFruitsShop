@@ -51,6 +51,37 @@ h2 {
     background-color: #4CAF50;
     color: white;
 }
+.quantity-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.quantity-container button {
+    width: 30px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+.quantity-container button:hover {
+    background-color: #e0e0e0;
+}
+
+.quantity-container input.quantity {
+    width: 50px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
 
 /* Footer */
 footer {

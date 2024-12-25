@@ -5,6 +5,7 @@ import com.example.tmfruitsshop.Model.Product;
 import com.example.tmfruitsshop.Service.Admin.AdminService;
 import com.example.tmfruitsshop.Service.Admin.InAdminService;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +17,7 @@ import java.util.List;
 
     @WebServlet("/cart")
     public class CartServlet extends HttpServlet {
-        private static InAdminService adminService = new AdminService();
+        private static final InAdminService adminService = new AdminService();
 
         @Override
         protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,6 +25,7 @@ import java.util.List;
             resp.setCharacterEncoding("UTF-8");
             resp.setContentType("text/html; charset=UTF-8");
             String action = req.getParameter("action");
+            System.out.println(action);
             int productID = Integer.parseInt(req.getParameter("id"));
             if (action == null) {
                 action = "";
@@ -34,7 +36,8 @@ import java.util.List;
                     req.getRequestDispatcher("/View/user/productDetail.jsp").forward(req, resp);
                     break;
                 default:
-                    req.getRequestDispatcher("/View/user/homeUser.jsp").forward(req, resp);
+                    RequestDispatcher dispatcher = req.getRequestDispatcher("/View/user/order.jsp");
+                    dispatcher.forward(req, resp);
                     break;
             }
         }
@@ -46,8 +49,6 @@ import java.util.List;
             resp.setContentType("text/html; charset=UTF-8");
 
             String action = req.getParameter("action");
-            int productID = Integer.parseInt(req.getParameter("id"));
-
             if (action == null) {
                 action = "";
             }
@@ -56,7 +57,7 @@ import java.util.List;
             if (cart == null) {
                 cart = new ArrayList<>();
             }
-
+            int productID = Integer.parseInt(req.getParameter("id"));
             switch (action) {
                 case "addToCart":
                     int quantityBuy = Integer.parseInt(req.getParameter("quantityBuy"));
@@ -69,14 +70,14 @@ import java.util.List;
                     req.getSession().setAttribute("cart", cart);
                     resp.sendRedirect("/user?action=showCart");
                     break;
-
                 default:
-                    req.getRequestDispatcher("/user").forward(req, resp);
+                    req.getRequestDispatcher("/user").forward(req , resp);
                     break;
             }
         }
 
-        private static void updateCartItemCount(HttpServletRequest req, List<CartItem> cart) {
+
+        static void updateCartItemCount(HttpServletRequest req, List<CartItem> cart) {
             int cartItemCount = cart.size();
             req.getSession().setAttribute("cartItemCount", cartItemCount);
         }
@@ -103,3 +104,4 @@ import java.util.List;
         }
     }
 
+ 
