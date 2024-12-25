@@ -7,12 +7,16 @@
 <body>
 <div>
     <h1>Quản lý sản phẩm</h1>
-    <a href="/user?action=logout" ><button type = "submit">Đăng xuất></button></a>
-
-        <form action="/productAdmin" method="get">
+    <a href="/ContentServlet?action=homeAdmin">
+        <button type="submit">Quay lại</button>
+    </a>
+    <form action="/productAdmin" method="get">
         <input type="hidden" name="action" value="search">
         <input type="text" name="keyword" placeholder="Nhập từ khóa tìm kiếm">
         <input type="submit" value="Tìm kiếm">
+        <a href="addProduct.jsp">
+            <button type="submit">Thêm sản phẩm</button>
+        </a>
     </form>
     <div>
         <table border="1">
