@@ -45,11 +45,7 @@ public class UserServlet extends HttpServlet {
                 cancelOrder(req, resp);
                 break;
             case "showAccount":
-                req.getRequestDispatcher("/View/user/account.jsp").forward(req, resp);
-                break;
-            case "showOrderHistory" :
-                req.getRequestDispatcher("/View/user/orderHistory.jsp").forward(req, resp);
-                break;
+                
             default:
                 loadHomeUser(req, resp);
                 break;

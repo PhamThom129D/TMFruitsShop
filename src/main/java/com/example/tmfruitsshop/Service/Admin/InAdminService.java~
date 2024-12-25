@@ -26,6 +26,6 @@ public interface InAdminService {
     void addOrderDetail(int orderID,int productID,int quantity);
     List<CartItem> getOrderDetail(int orderID);
 
-    void updateStatusOrder(int orderID,String status,String paymentMethod);
-    void addInvoice(int orderID,double total);
+    void updateStatusOrder(int orderID,String status);
+    void addInvoice(int orderID,String paymentMethod,double total);
 }

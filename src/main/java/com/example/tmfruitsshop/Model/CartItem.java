@@ -16,6 +16,12 @@ public class CartItem {
         this.quantity = quantity;
         this.isChecked = false;
     }
+    public CartItem(String productName, double price, int quantity, String urlImage) {
+    this.productName = productName;
+    this.price = price;
+    this.quantity = quantity;
+    this.urlImage = urlImage;
+    }
 
     public boolean isChecked() {
         return isChecked;

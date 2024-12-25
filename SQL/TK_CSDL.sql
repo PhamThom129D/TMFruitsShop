@@ -31,7 +31,8 @@ CREATE TABLE `Order`
     orderID     INT PRIMARY KEY AUTO_INCREMENT,
     orderDate   DATETIME,
     userID      INT,
-    statusOrder ENUM('Pending', 'Cancel', 'Paid') DEFAULT 'Pending',
+    statusOrder ENUM('Pending', 'Cancel', 'Paid'),
+     paymentMethod VARCHAR(255),
     FOREIGN KEY (userID) REFERENCES user (userID)
 );
 
@@ -47,7 +48,6 @@ CREATE TABLE Invoices
 (
     invoiceID     INT PRIMARY KEY AUTO_INCREMENT,
     orderID       INT,
-    paymentMethod VARCHAR(255),
     paymentDate   DATETIME,
     total         INT,
     FOREIGN KEY (orderID) REFERENCES `Order` (orderID)

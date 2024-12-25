@@ -1,5 +1,6 @@
 package com.example.tmfruitsshop.Service.Admin;
 
+import com.example.tmfruitsshop.Model.CartItem;
 import com.example.tmfruitsshop.Model.Product;
 import com.example.tmfruitsshop.Service.ConnectDatabase;
 
@@ -10,7 +11,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.time.LocalTime.now;
 
 public class AdminService implements InAdminService {
     @Override
@@ -154,7 +154,7 @@ public class AdminService implements InAdminService {
 
     @Override
     public int addOrder(int userID) {
-        String query = "INSERT INTO `order`(orderDate, userID, statusOrder) VALUES (?, ?, 'Pending');";
+        String query = "INSERT INTO `order`(orderDate, userID) VALUES (?, ?);";
         LocalDateTime now = LocalDateTime.now();
         Timestamp timestamp = Timestamp.valueOf(now);
         try (Connection conn = ConnectDatabase.getConnection();
@@ -188,6 +188,68 @@ public class AdminService implements InAdminService {
             throw new RuntimeException(e);
         }
 
+    }
+
+    @Override
+    public List<CartItem> getOrderDetail(int orderID) {
+        String query = "SELECT \n" +
+                "    p.productID,\n" +
+                "    p.productName,\n" +
+                "    p.price,\n" +
+                "    po.quantity, p.urlImage \n" +
+                "FROM \n" +
+                "    Products_Order po\n" +
+                "JOIN \n" +
+                "    products p ON po.productID = p.productID\n" +
+                "JOIN \n" +
+                "    `Order` o ON po.orderID = o.orderID\n" +
+                "WHERE \n" +
+                "    o.orderID = ?";
+        List<CartItem> cartItems = new ArrayList<>();
+        try (Connection conn = ConnectDatabase.getConnection();
+             PreparedStatement prep = conn.prepareStatement(query)) {
+            prep.setInt(1, orderID);
+            ResultSet rs = prep.executeQuery();
+            while (rs.next()) {
+                String productName = rs.getString("productName");
+                int quantity = rs.getInt("quantity");
+                int price = rs.getInt("price");
+                String urlImage = rs.getString("urlImage");
+                CartItem cartItem = new CartItem(productName,price, quantity, urlImage);
+                cartItems.add(cartItem);
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return cartItems;
+    }
+
+    @Override
+    public void updateStatusOrder(int orderID,String status,String paymentMethod) {
+        String query = "UPDATE `order` SET statusOrder = ?, paymentMethod=? WHERE orderID = ?";
+        try (Connection conn = ConnectDatabase.getConnection();
+             PreparedStatement prep = conn.prepareStatement(query)) {
+            prep.setString(1, status);
+            prep.setString(2, paymentMethod);
+            prep.setInt(3, orderID);
+            prep.executeUpdate();
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void addInvoice(int orderID,double total) {
+        String query = "INSERT INTO invoice (orderID,paymentDate, total) VALUES (?,?,?)";
+        try (Connection conn = ConnectDatabase.getConnection();
+             PreparedStatement prep = conn.prepareStatement(query)) {
+            prep.setInt(1, orderID);
+            prep.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
+            prep.setDouble(3, total);
+            prep.executeUpdate();
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private Product mapResultSetToProduct(ResultSet rs) throws SQLException {

@@ -2,16 +2,15 @@ package com.example.tmfruitsshop.Controller;
 
 import com.example.tmfruitsshop.Model.CartItem;
 import com.example.tmfruitsshop.Model.Product;
-import com.example.tmfruitsshop.Model.User;
 import com.example.tmfruitsshop.Service.Admin.AdminService;
 import com.example.tmfruitsshop.Service.Admin.InAdminService;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +36,8 @@ import java.util.List;
                     req.getRequestDispatcher("/View/user/productDetail.jsp").forward(req, resp);
                     break;
                 default:
-                    req.getRequestDispatcher("/View/user/homeUser.jsp").forward(req, resp);
+                    RequestDispatcher dispatcher = req.getRequestDispatcher("/View/user/order.jsp");
+                    dispatcher.forward(req, resp);
                     break;
             }
         }
@@ -49,7 +49,6 @@ import java.util.List;
             resp.setContentType("text/html; charset=UTF-8");
 
             String action = req.getParameter("action");
-            System.out.println(action);
             if (action == null) {
                 action = "";
             }
@@ -59,7 +58,6 @@ import java.util.List;
                 cart = new ArrayList<>();
             }
             int productID = Integer.parseInt(req.getParameter("id"));
-
             switch (action) {
                 case "addToCart":
                     int quantityBuy = Integer.parseInt(req.getParameter("quantityBuy"));
@@ -106,3 +104,4 @@ import java.util.List;
         }
     }
 
+ 

@@ -60,6 +60,7 @@
                     </button>
                     <div class="menu-info">
                         <a href="/user?action=showAccount">Thông tin tài khoản</a>
+                        <a href="/user?action=showOrderHistory">Lịch sử mua hàng</a>
                         <a href="/login?action=logout">
                             <button type="submit" onclick="confirmLogout()" style="background-color: transparent;
                             border: none; color: white; font-size: 15px;">Đăng xuất

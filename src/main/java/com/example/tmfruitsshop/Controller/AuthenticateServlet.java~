@@ -93,7 +93,6 @@ public class AuthenticateServlet extends HttpServlet {
                     req.getRequestDispatcher("View/admin/homeAdmin.jsp").forward(req, resp);
                     break;
                 case "user":
-                    session.setAttribute("loggedInUser", user);
                     resp.sendRedirect("/user");
                     break;
             }

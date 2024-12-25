@@ -233,9 +233,6 @@ footer {
 .image-user:hover .menu-info {
     display: block;
 }
-.logo {
-    flex: 1;
-}
 /* Search Container */
 .search-container {
     flex: 3;
