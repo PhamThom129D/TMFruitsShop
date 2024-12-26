@@ -1,4 +1,3 @@
-<%-- Created by IntelliJ IDEA. User: T14 Date: 17/12/2024 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
