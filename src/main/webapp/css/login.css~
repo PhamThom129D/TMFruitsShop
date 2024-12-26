@@ -71,10 +71,10 @@ html {
 .user-box input:valid ~ label {
     top: -20px;
     color: rgb(255, 255, 255);
-    font-size: 18px;
+    font-size: 16px;
 }
 .user-box span {
-    font-size: 16px;
+    font-size: 12px;
 }
 
 button {
