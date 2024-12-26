@@ -16,20 +16,20 @@ html {
 
 .login-box {
     position: relative;
-    width: 400px;
-    padding: 40px;
-    background: rgba(242, 248, 240, 0.31);
+    width: 550px;
+    padding: 28px;
+    background: rgba(63, 101, 121, 0.47);
     box-shadow: 0 15px 25px rgba(91, 225, 45, 0.4);
-    border-radius: 15px;
+    border-radius: 30px;
     text-align: center;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(20px);
 }
 
 .login-box h1 {
-    color: #000000;
-    font-size: 40px;
-    margin-bottom: 20px;
-    font-weight: 600;
+    color: #ffffff;
+    font-size: 58px;
+    margin-bottom: 25px;
+    font-weight: 500;
 }
 
 .user-box {
@@ -39,13 +39,13 @@ html {
 
 .user-box input {
     width: 100%;
-    max-width: 350px;
+    max-width: 380px;
     padding: 12px 0;
-    font-size: 20px;
-    color: rgba(0, 0, 0, 0.85);
+    font-size: 28px;
+    color: rgba(255, 255, 255, 0.85);
     margin-bottom: 10px;
     border: none;
-    border-bottom: 2px solid #ccc;
+    border-bottom: 2px solid #c0ffbe;
     outline: none;
     background: transparent;
     transition: all 0.3s;
@@ -53,16 +53,16 @@ html {
 
 
 .user-box input:focus {
-    border-bottom-color: rgb(0, 255, 255);
+    border-bottom-color: rgb(0, 255, 198);
 }
 
 .user-box label {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 65px;
     padding: 10px 0;
-    font-size: 18px;
-    color: #002525;
+    font-size: 24px;
+    color: #ffffff;
     pointer-events: none;
     transition: .5s;
 }
@@ -70,21 +70,25 @@ html {
 .user-box input:focus ~ label,
 .user-box input:valid ~ label {
     top: -20px;
-    color: rgb(0, 255, 255);
-    font-size: 12px;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+}
+.user-box span {
+    font-size: 16px;
 }
 
 button {
-    width: 100%;
+    width: 50%;
     padding: 12px;
     background: rgba(17, 245, 255, 0.75);
     border: none;
     color: rgb(255, 255, 255);
-    font-size: 24px;
+    font-size: 30px;
     cursor: pointer;
     transition: 0.3s ease;
     border-radius: 5px;
-    margin-top: 20px;
+    margin-top: 5px;
+    margin-bottom: 12px;
 }
 
 button:hover {
@@ -100,8 +104,8 @@ a {
     display: inline-block;
     padding: 10px 20px;
     background-color: transparent;
-    color: #03e9f4;
-    font-size: 16px;
+    color: #ffffff;
+    font-size: 20px;
     border: 1px solid #03e9f4;
     border-radius: 5px;
     text-transform: uppercase;
@@ -111,7 +115,7 @@ a {
 }
 
 .sign-up-btn:hover {
-    background-color: rgba(53, 239, 113, 0.68);
+    background-color: rgba(142, 255, 178, 0.68);
     color: #fff;
 }
 
@@ -121,11 +125,11 @@ a {
 
 #toggle-password {
     position: absolute;
-    right: 5px;
+    right: 65px;
     top: 50%;
     transform: translateY(-50%);
-    width: 25px;
-    height: 25px;
+    width: 35px;
+    height: 30px;
     cursor: pointer;
     transition: 0.3s;
 }
@@ -136,7 +140,7 @@ a {
 
 .error-message {
     text-align: left;
-    font-size: 15px;
-    color: red;
+    font-size: 24px;
+    color: #ff0000;
     font-weight: bold;
 }

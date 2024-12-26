@@ -6,6 +6,7 @@ public class CartItem {
     private String productName;
     private double price;
     private int quantity;
+    private boolean isChecked;
 
     public CartItem(int productID, String urlImage, String productName, double price, int quantity) {
         this.productID = productID;
@@ -13,6 +14,21 @@ public class CartItem {
         this.productName = productName;
         this.price = price;
         this.quantity = quantity;
+        this.isChecked = false;
+    }
+    public CartItem(String productName, double price, int quantity, String urlImage) {
+    this.productName = productName;
+    this.price = price;
+    this.quantity = quantity;
+    this.urlImage = urlImage;
+    }
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
     }
 
     public String getUrlImage() {
@@ -63,6 +79,7 @@ public class CartItem {
                 ", productName='" + productName + '\'' +
                 ", price=" + price +
                 ", quantity=" + quantity +
+                ", isChecked=" + isChecked +
                 '}';
     }
 }

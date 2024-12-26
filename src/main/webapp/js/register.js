@@ -19,11 +19,9 @@ function validateStep1() {
     const password = document.getElementById('password').value.trim();
     const rePassword = document.getElementById('rePassword').value.trim();
 
-    // Regex cho email và password
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,10}$/;
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,20}$/;
 
-    // Kiểm tra email
     const emailField = document.getElementById('email');
     const emailMessage = document.getElementById('email-message');
     if (!emailRegex.test(email)) {
@@ -32,12 +30,11 @@ function validateStep1() {
         emailMessage.style.color = 'red';
         return false;
     } else {
-        emailField.style.borderColor = 'green';
+        emailField.style.borderColor = ' rgb(255, 200, 47)';
         emailMessage.textContent = 'Email hợp lệ';
-        emailMessage.style.color = 'green';
+        emailMessage.style.color = ' rgb(255, 200, 47)';
     }
 
-    // Kiểm tra password
     const passwordField = document.getElementById('password');
     const passwordMessage = document.getElementById('password-message');
     if (!passwordRegex.test(password)) {
@@ -46,12 +43,11 @@ function validateStep1() {
         passwordMessage.style.color = 'red';
         return false;
     } else {
-        passwordField.style.borderColor = 'green';
+        passwordField.style.borderColor = ' rgb(255, 200, 47)';
         passwordMessage.textContent = 'Mật khẩu hợp lệ';
-        passwordMessage.style.color = 'green';
+        passwordMessage.style.color = ' rgb(255, 200, 47)';
     }
 
-    // Kiểm tra khớp mật khẩu
     const rePasswordField = document.getElementById('rePassword');
     const rePasswordMessage = document.getElementById('rePassword-message');
     if (password !== rePassword) {
@@ -60,9 +56,9 @@ function validateStep1() {
         rePasswordMessage.style.color = 'red';
         return false;
     } else {
-        rePasswordField.style.borderColor = 'green';
+        rePasswordField.style.borderColor = ' rgb(255, 200, 47)';
         rePasswordMessage.textContent = 'Mật khẩu khớp';
-        rePasswordMessage.style.color = 'green';
+        rePasswordMessage.style.color = ' rgb(255, 200, 47)';
     }
 
     return true;
@@ -74,12 +70,10 @@ function validateStep2() {
     const address = document.querySelector('input[name="address"]').value;
     const urlAvatar = document.getElementById('urlAvatar').value.trim();
 
-    // Regex cho các trường Step 2
     const usernameRegex = /^[a-zA-Z0-9_]{3,15}$/;
     const phoneRegex = /^(0[3-9]{1}[0-9]{8})$/;
     const addressRegex = /^.{5,100}$/;
 
-    // Kiểm tra URL ảnh
     if (!validateImageUrl(urlAvatar)) {
         const urlAvatarField = document.getElementById('urlAvatar');
         const urlAvatarMessage = document.getElementById('urlAvatar-message');
@@ -90,12 +84,11 @@ function validateStep2() {
     } else {
         const urlAvatarField = document.getElementById('urlAvatar');
         const urlAvatarMessage = document.getElementById('urlAvatar-message');
-        urlAvatarField.style.borderColor = 'green';
+        urlAvatarField.style.borderColor = ' rgb(255, 200, 47)';
         urlAvatarMessage.textContent = 'URL ảnh hợp lệ';
-        urlAvatarMessage.style.color = 'green';
+        urlAvatarMessage.style.color = ' rgb(255, 200, 47)';
     }
 
-    // Kiểm tra tên người dùng
     const usernameField = document.querySelector('input[name="username"]');
     const usernameMessage = document.getElementById('username-message');
     if (!usernameRegex.test(username)) {
@@ -104,12 +97,11 @@ function validateStep2() {
         usernameMessage.style.color = 'red';
         return false;
     } else {
-        usernameField.style.borderColor = 'green';
+        usernameField.style.borderColor = ' rgb(255, 200, 47)';
         usernameMessage.textContent = 'Tên người dùng hợp lệ';
-        usernameMessage.style.color = 'green';
+        usernameMessage.style.color = ' rgb(255, 200, 47)';
     }
 
-    // Kiểm tra số điện thoại
     const phoneField = document.querySelector('input[name="phonenumber"]');
     const phoneMessage = document.getElementById('phone-message');
     if (!phoneRegex.test(phonenumber)) {
@@ -118,12 +110,11 @@ function validateStep2() {
         phoneMessage.style.color = 'red';
         return false;
     } else {
-        phoneField.style.borderColor = 'green';
+        phoneField.style.borderColor = ' rgb(255, 200, 47)';
         phoneMessage.textContent = 'Số điện thoại hợp lệ';
-        phoneMessage.style.color = 'green';
+        phoneMessage.style.color = ' rgb(255, 200, 47)';
     }
 
-    // Kiểm tra địa chỉ
     const addressField = document.querySelector('input[name="address"]');
     const addressMessage = document.getElementById('address-message');
     if (!addressRegex.test(address)) {
@@ -132,9 +123,9 @@ function validateStep2() {
         addressMessage.style.color = 'red';
         return false;
     } else {
-        addressField.style.borderColor = 'green';
+        addressField.style.borderColor = ' rgb(255, 200, 47)';
         addressMessage.textContent = 'Địa chỉ hợp lệ';
-        addressMessage.style.color = 'green';
+        addressMessage.style.color = ' rgb(255, 200, 47)';
     }
 
     return true;

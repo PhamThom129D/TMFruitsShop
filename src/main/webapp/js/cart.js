@@ -1,48 +1,61 @@
-// Hàm để cập nhật tổng tiền khi thay đổi số lượng hoặc checkbox
-function updateTotalPrice() {
-    var total = 0;
-    // Lặp qua tất cả các checkbox và kiểm tra nếu chúng được chọn
-    var selectedItems = document.querySelectorAll('.product-checkbox:checked');
-
-    selectedItems.forEach(function (checkbox) {
-        var row = checkbox.closest('tr');
-        var price = parseFloat(row.querySelector('.quantity').getAttribute('data-price'));
-        var quantity = parseInt(row.querySelector('.quantity').value);
-        var totalPrice = price * quantity;
-
-        // Cập nhật giá trị của cột "Tổng"
-        var totalCell = row.querySelector('.total-price');
-        totalCell.textContent = totalPrice.toLocaleString('vi-VN') + '₫';
-
-        // Cộng tổng vào
-        total += totalPrice;
-    });
-
-    // Cập nhật tổng tiền vào phần tổng
-    document.getElementById('totalAmount').textContent = total.toLocaleString('vi-VN') + '₫';
-}
-
-// Lắng nghe sự thay đổi khi người dùng thay đổi số lượng, checkbox hoặc trạng thái "Chọn tất cả"
 document.addEventListener('DOMContentLoaded', function () {
-    var quantityInputs = document.querySelectorAll('.quantity');
-    quantityInputs.forEach(function (input) {
-        input.addEventListener('input', updateTotalPrice);
-    });
+    const selectAllCheckbox = document.getElementById('selectAll');
+    const totalAmountElement = document.getElementById('totalAmount');
 
-    var checkboxes = document.querySelectorAll('.product-checkbox');
-    checkboxes.forEach(function (checkbox) {
-        checkbox.addEventListener('change', updateTotalPrice);
-    });
+    function updateTotalAmount() {
+        let totalAmount = 0;
+        document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
+            const row = checkbox.closest('tr');
+            const price = parseFloat(row.querySelector('.quantity').getAttribute('data-price'));
+            const quantity = parseInt(row.querySelector('.quantity').value, 10);
+            const totalPrice = price * quantity;
 
-    // Lắng nghe sự thay đổi của checkbox "Chọn tất cả"
-    document.getElementById("selectAll").addEventListener("change", function () {
-        var checkboxes = document.querySelectorAll(".product-checkbox");
-        checkboxes.forEach(function (checkbox) {
-            checkbox.checked = document.getElementById("selectAll").checked;
+            row.querySelector('.total-price').innerText = totalPrice.toLocaleString('vi-VN') + '₫';
+            totalAmount += totalPrice;
         });
-        updateTotalPrice();
+        totalAmountElement.innerText = totalAmount.toLocaleString('vi-VN') + '₫';
+    }
+
+    selectAllCheckbox.addEventListener('change', function () {
+        const checkboxes = document.querySelectorAll('.product-checkbox');
+        checkboxes.forEach(checkbox => checkbox.checked = selectAllCheckbox.checked);
+        updateTotalAmount();
     });
 
-    // Cập nhật tổng tiền ngay khi trang được tải
-    updateTotalPrice();
+    document.querySelectorAll('.product-checkbox').forEach(checkbox => {
+        checkbox.addEventListener('change', updateTotalAmount);
+    });
+
+    document.querySelectorAll('.quantity').forEach(input => {
+        input.addEventListener('input', function () {
+            const row = input.closest('tr');
+            const price = parseFloat(input.getAttribute('data-price'));
+            const quantity = parseInt(input.value, 10);
+
+            const totalPrice = price * quantity;
+            row.querySelector('.total-price').innerText = totalPrice.toLocaleString('vi-VN') + '₫';
+
+            updateTotalAmount();
+        });
+    });
+
+    const cartForm = document.getElementById('cartForm');
+    cartForm.addEventListener('click', function (event) {
+        const target = event.target;
+
+        if (target.classList.contains('decrease-btn')) {
+            const input = target.nextElementSibling;
+            const currentValue = parseInt(input.value, 10);
+            if (currentValue > parseInt(input.min, 10)) {
+                input.value = currentValue - 1;
+                input.dispatchEvent(new Event('input')); // Trigger input event to update the total amount
+            }
+        }
+
+        if (target.classList.contains('increase-btn')) {
+            const input = target.previousElementSibling;
+            input.value = parseInt(input.value, 10) + 1;
+            input.dispatchEvent(new Event('input')); // Trigger input event to update the total amount
+        }
+    });
 });

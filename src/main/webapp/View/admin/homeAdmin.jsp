@@ -1,39 +1,43 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html lang="vi">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HomeAdmin</title>
-    <link rel="stylesheet" href="css/homeAdmin.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Home Admin</title>
+    <link rel="stylesheet" href="/css/homeAdmin.css">
 </head>
 <body>
-<div class="header">
-    <c:if test="${sessionScope.user != null}">
-        <ul class="user-info">
-            <li class="user-info-item">
-                <img src="${sessionScope.user.urlAvatar}" class="user-avatar" alt="image">
-            </li>
-            <li class="user-info-item">${sessionScope.user.username}</li>
-            <li class="user-info-item">${sessionScope.user.email}</li>
-        </ul>
-    </c:if>
-
-    <ul class="user-settings">
-        <li>profile</li>
-        <li>Setting</li>
-        <li><a href="/?action=logout">Đăng xuất</a></li>
-    </ul>
+<div class="container">
+    <div class="menu-info">
+        <div>
+            <img src="${sessionScope.user.urlAvatar}" alt="Lỗi ảnh">
+        </div>
+        <span>
+            <div>
+                <p>Name: ${sessionScope.user.username}</p>
+                <p>Email: ${sessionScope.user.email}</p>
+            </div>
+        </span>
+        <div class="menu-account">
+            <a href="#">
+                <button type="submit">Thông tin tài khoản</button>
+            </a>
+            <br>
+            <a href="/login?action=logout">
+                <button style="width: 140px" type="submit">Đăng xuất</button>
+            </a>
+        </div>
+    </div>
+    <div class="menu-manage">
+        <a href="/ContentServlet?action=redirectUser">
+            <button type="submit">Quản lý người dùng</button>
+        </a>
+        <a href="/ContentServlet?action=redirectProduct">
+            <button type="submit">Quản lý sản phẩm</button>
+        </a>
+        <a href="/ContentServlet?action=redirectOrder">
+            <button type="submit">Quản lý đơn hàng</button>
+        </a>
+    </div>
 </div>
-<div>
-    <ul class="menu">
-        <li><a href="/ContentServlet?action=redirectUser">Quản lý người dung</a></li>
-        <li><a href="/ContentServlet?action=redirectProduct">Quản lý sản phẩm</a></li>
-        <li><a href="/ContentServlet?action=redirectOrder">Quản lý đơn hàng</a></li>
-    </ul>
-</div>
-
 </body>
 </html>

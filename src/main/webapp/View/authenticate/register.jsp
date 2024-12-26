@@ -12,26 +12,25 @@
 <div class="login-box">
     <h1>Đăng ký</h1>
     <form id="register-form" action="/login?action=register" method="post" onsubmit="return validateForm()">
-        <!-- Step 1 -->
         <div id="step-1" class="step">
             <div class="user-box">
                 <input type="text" id="urlAvatar" name="urlAvatar" required>
-                <label>Avatar</label>
+                <label>Avatar</label><br>
                 <span id="urlAvatar-message" class="error-message"></span>
             </div>
             <div class="user-box">
                 <input type="email" id="email" name="email" required>
-                <label>Email</label>
+                <label>Email</label><br>
                 <span id="email-message" class="error-message"></span>
             </div>
             <div class="user-box">
                 <input type="password" id="password" name="password" required>
-                <label>Mật khẩu</label>
+                <label>Mật khẩu</label><br>
                 <span id="password-message" class="error-message"></span>
             </div>
             <div class="user-box">
                 <input type="password" id="rePassword" name="rePassword" required>
-                <label>Nhập lại mật khẩu</label>
+                <label>Nhập lại mật khẩu</label><br>
                 <span id="rePassword-message" class="error-message"></span>
             </div>
             <button type="button" onclick="nextStep()">Tiếp tục</button>
@@ -41,17 +40,17 @@
         <div id="step-2" class="step" style="display: none;">
             <div class="user-box">
                 <input type="text" name="username" required>
-                <label>Tên người dùng</label>
+                <label>Tên người dùng</label><br>
                 <span id="username-message" class="error-message"></span>
             </div>
             <div class="user-box">
                 <input type="tel" name="phonenumber" required>
-                <label>Số điện thoại</label>
+                <label>Số điện thoại</label><br>
                 <span id="phone-message" class="error-message"></span>
             </div>
             <div class="user-box">
                 <input type="text" name="address" required>
-                <label>Địa chỉ</label>
+                <label>Địa chỉ</label><br>
                 <span id="address-message" class="error-message"></span>
             </div>
             <button type="submit">Đăng ký</button>

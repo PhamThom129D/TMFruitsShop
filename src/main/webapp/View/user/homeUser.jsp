@@ -12,67 +12,23 @@
 </head>
 
 <body>
-<header>
-    <div class="navbar">
-        <!-- Logo -->
-        <div class="logo">
-            <a href="/user"><img src="images/logo.png" alt="Logo" style="width: 100px; height: 100px"></a>
-        </div>
-        <!-- Menu -->
-        <ul class="menu">
-            <li><a href="/user">Trang chủ</a></li>
-            <li>
-                <div class="search-container">
-                    <form action="/user?action=searchProduct" method="post">
-                        <button type="submit">Tìm kiếm</button>
-                        <input type="text" placeholder="Tìm kiếm" name="keyword">
-                    </form>
-                </div>
-            </li>
-            <li class="dropdown">
-                <a href="/user">Sản phẩm</a>
-                <ul class="dropdown-content">
-                    <li><a href="/user?action=searchWithType&type=fruits">Trái cây</a></li>
-                    <li><a href="/user?action=searchWithType&type=vegetables" >Rau củ</a></li>
-                    <li><a href="/user?action=searchWithType&type=combo" >Combo</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="/user?action=showCart" style="position: relative;">
-                    Giỏ hàng
-                    <c:if test="${not empty sessionScope.cartItemCount and sessionScope.cartItemCount > 0}">
-                        <span style="position: absolute; top: -5px; right: -5px; background-color: red; color: white; border-radius: 50%; padding: 3px 7px; font-size: 12px; font-weight: bold;">
-                                ${sessionScope.cartItemCount}
-                        </span>
-                    </c:if>
-                </a>
-            </li>
-<%--            <li>--%>
-<%--                <a href="/login?action=logout">--%>
-<%--                    <button type="submit" onclick="confirmLogout()" style="background-color: transparent;--%>
-<%--                            border: none; color: white; font-size: 18px;">Đăng xuất</button>--%>
-<%--                </a>--%>
-<%--            </li>--%>
-            <li>
-                <a href="/user?action=showAccount">
-                    <img src="${loggedInUser.urlAvatar}" alt="avt" style="width: 60px; height: 60px; border-radius: 50%;">
-                </a>
-            </li>
-        </ul>
-    </div>
-</header>
-
+<jsp:include page="${pageContext.request.contextPath}/View/user/menuUser.jsp" />
+<%-- --%>
 <!-- Main Content -->
 <main>
     <div class="container">
         <div class="product-list">
             <c:forEach items="${products}" var="product">
                 <div class="product-item">
-                    <img src="${product.urlImage}" alt="${product.productName}" style="height: 150px; width: 180px">
+                    <img src="${product.urlImage}" alt="${product.productName}">
                     <h3>${product.productName}</h3>
+                    <c:if test="${product.quantity == 0}">
+                        <span style="color: red">Hết hàng</span>
+                    </c:if>
+                    <c:if test="${product.quantity > 0}">
                     <p style="font-size: small">Số lượng : ${product.quantity}</p>
                     <p class="price">
-                        <fmt:formatNumber value="${product.price}" type="number" pattern="#,##0"/>₫
+                        <fmt:formatNumber value="${product.price}" type="number" pattern="#,##0" />₫
                     </p>
                     <a href="/cart?action=showProductDetail&id=${product.productID}">
                         <button class="show-detail">Chi tiết sản phẩm</button>
@@ -83,6 +39,7 @@
                         <input type="hidden" name="quantityBuy" value="1">
                         <button type="submit" class="add-to-cart">Mua ngay</button>
                     </form>
+                    </c:if>
                 </div>
             </c:forEach>
         </div>
@@ -103,6 +60,5 @@
         }
     }
 </script>
-
 </body>
 </html>

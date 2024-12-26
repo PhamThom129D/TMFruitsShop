@@ -31,7 +31,8 @@ CREATE TABLE `Order`
     orderID     INT PRIMARY KEY AUTO_INCREMENT,
     orderDate   DATETIME,
     userID      INT,
-    statusOrder ENUM('Pending', 'Cancel', 'Paid') DEFAULT 'Pending',
+    statusOrder ENUM('Pending', 'Cancel', 'Paid'),
+     paymentMethod VARCHAR(255),
     FOREIGN KEY (userID) REFERENCES user (userID)
 );
 
@@ -47,7 +48,6 @@ CREATE TABLE Invoices
 (
     invoiceID     INT PRIMARY KEY AUTO_INCREMENT,
     orderID       INT,
-    paymentMethod VARCHAR(255),
     paymentDate   DATETIME,
     total         INT,
     FOREIGN KEY (orderID) REFERENCES `Order` (orderID)
@@ -135,5 +135,4 @@ VALUES ('Táo', 50000, 'Táo tươi ngon, mọng nước, giàu dinh dưỡng, h
        ('Combo Hoa Quả Tặng 9', 150000, 'Hộp quà trái cây với các loại quả ngon, chất lượng và đóng gói tinh tế',
         'Combo', 50, 'https://shophoaqua.vn/public/media/file/files/lang-trai-cay/550.jpg'),
        ('Combo Hoa Quả Tặng 10', 175000,
-        'Sự kết hợp hoàn hảo giữa hình thức và chất lượng, phù hợp làm quà tặng cao cấp', 'Combo', 30,
-        'https://shophoaqua.vn/public/media/file/files/lang-trai-cay/8401.jpg');
+        'Sự kết hợp hoàn hảo giữa hình thức và chất lượng, phù hợp làm quà tặng cao cấp', 'Combo', 30);
