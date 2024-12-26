@@ -42,7 +42,14 @@
                     <td><img src="${product.urlImage}" class="product-image" alt="image"></td>
                     <td>${product.productName}</td>
                     <td>${product.price}</td>
-                    <td>${product.quantity}</td>
+                    <td>
+                        <c:if test="${product.quantity == 0}">
+                            <span style="color: red">Hết hàng</span>
+                        </c:if>
+                        <c:if test="${product.quantity > 0}">
+                            <span style="color: green">${product.quantity}</span>
+                        </c:if>
+                    </td>
                     <td>${product.type}</td>
                     <td>${product.description}</td>
                     <td>

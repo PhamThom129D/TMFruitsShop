@@ -12,10 +12,8 @@
     </script>
 </head>
 <body>
-
+<jsp:include page="${pageContext.request.contextPath}/View/user/menuUser.jsp" />
 <div class="container">
-    <a href="/user">Quay lại trang chủ</a>
-    <%-- Kiểm tra và hiển thị lỗi từ Servlet --%>
     <c:if test="${not empty error}">
         <script>
             alert("${error}");

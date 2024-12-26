@@ -16,7 +16,6 @@ import java.io.IOException;
 
 @WebServlet("/login")
 public class AuthenticateServlet extends HttpServlet {
-    public final static InAdminService adminService = new AdminService();
     private static final InUserService userService = new UserService();
 
     @Override
@@ -84,6 +83,8 @@ public class AuthenticateServlet extends HttpServlet {
         String password = req.getParameter("password");
         User user = userService.login(req, email, password);
         HttpSession session = req.getSession();
+        HttpSession session1 = req.getSession();
+        session1.setAttribute("loggedInUserID",user);
         if (user == null) {
             session.setAttribute("errorMessage", "Sai mật khẩu hoặc tài khoản không tồn tại.");
             resp.sendRedirect("View/authenticate/login.jsp");

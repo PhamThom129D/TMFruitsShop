@@ -19,11 +19,9 @@ function validateStep1() {
     const password = document.getElementById('password').value.trim();
     const rePassword = document.getElementById('rePassword').value.trim();
 
-    // Regex cho email và password
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,10}$/;
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,20}$/;
 
-    // Kiểm tra email
     const emailField = document.getElementById('email');
     const emailMessage = document.getElementById('email-message');
     if (!emailRegex.test(email)) {
@@ -37,7 +35,6 @@ function validateStep1() {
         emailMessage.style.color = ' rgb(255, 200, 47)';
     }
 
-    // Kiểm tra password
     const passwordField = document.getElementById('password');
     const passwordMessage = document.getElementById('password-message');
     if (!passwordRegex.test(password)) {
@@ -51,7 +48,6 @@ function validateStep1() {
         passwordMessage.style.color = ' rgb(255, 200, 47)';
     }
 
-    // Kiểm tra khớp mật khẩu
     const rePasswordField = document.getElementById('rePassword');
     const rePasswordMessage = document.getElementById('rePassword-message');
     if (password !== rePassword) {
@@ -74,12 +70,10 @@ function validateStep2() {
     const address = document.querySelector('input[name="address"]').value;
     const urlAvatar = document.getElementById('urlAvatar').value.trim();
 
-    // Regex cho các trường Step 2
     const usernameRegex = /^[a-zA-Z0-9_]{3,15}$/;
     const phoneRegex = /^(0[3-9]{1}[0-9]{8})$/;
     const addressRegex = /^.{5,100}$/;
 
-    // Kiểm tra URL ảnh
     if (!validateImageUrl(urlAvatar)) {
         const urlAvatarField = document.getElementById('urlAvatar');
         const urlAvatarMessage = document.getElementById('urlAvatar-message');
@@ -95,7 +89,6 @@ function validateStep2() {
         urlAvatarMessage.style.color = ' rgb(255, 200, 47)';
     }
 
-    // Kiểm tra tên người dùng
     const usernameField = document.querySelector('input[name="username"]');
     const usernameMessage = document.getElementById('username-message');
     if (!usernameRegex.test(username)) {
@@ -109,7 +102,6 @@ function validateStep2() {
         usernameMessage.style.color = ' rgb(255, 200, 47)';
     }
 
-    // Kiểm tra số điện thoại
     const phoneField = document.querySelector('input[name="phonenumber"]');
     const phoneMessage = document.getElementById('phone-message');
     if (!phoneRegex.test(phonenumber)) {
@@ -123,7 +115,6 @@ function validateStep2() {
         phoneMessage.style.color = ' rgb(255, 200, 47)';
     }
 
-    // Kiểm tra địa chỉ
     const addressField = document.querySelector('input[name="address"]');
     const addressMessage = document.getElementById('address-message');
     if (!addressRegex.test(address)) {

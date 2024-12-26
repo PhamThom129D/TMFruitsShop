@@ -136,4 +136,33 @@ VALUES ('Táo', 50000, 'Táo tươi ngon, mọng nước, giàu dinh dưỡng, h
        ('Combo Hoa Quả Tặng 10', 175000,
         'Sự kết hợp hoàn hảo giữa hình thức và chất lượng, phù hợp làm quà tặng cao cấp', 'Combo', 30,
         'https://shophoaqua.vn/public/media/file/files/lang-trai-cay/8401.jpg');
+<<<<<<< HEAD
+        use TMFruitsShop;
+        DELIMITER $$
+
+CREATE PROCEDURE AddOrder(
+    IN p_userID INT,
+    IN p_productID INT,
+    IN p_quantity INT
+)
+BEGIN
+    DECLARE v_orderID INT;
+
+    -- Thêm một đơn hàng mới vào bảng `order`
+    INSERT INTO `order` (orderDate, userID, statusOrder)
+    VALUES (NOW(), p_userID, 'Pending');
+
+    -- Lấy ID của đơn hàng vừa tạo
+    SET v_orderID = LAST_INSERT_ID();
+
+    -- Thêm sản phẩm vào bảng `order_detail` liên kết với đơn hàng vừa tạo
+    INSERT INTO order_detail (orderID, productID, quantity)
+    VALUES (v_orderID, p_productID, p_quantity);
+
+END$$
+
+DELIMITER ;
+
+=======
 	
+>>>>>>> bdcafcf67fa75b1d22387dc8da9253ed168b55b9

@@ -30,6 +30,7 @@ public class ProductAdminServlet extends HttpServlet {
                 showUpdateProductForm(req, resp);
                 break;
             case "showAddProduct":
+
                 resp.sendRedirect("/View/admin/addProduct.jsp");
                 break;
             case "search":

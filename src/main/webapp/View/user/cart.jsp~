@@ -12,7 +12,7 @@
     </script>
 </head>
 <body>
-
+<jsp:include page="${pageContext.request.contextPath}/View/user/menuUser.jsp" />
 <div class="container">
     <a href="/user">Quay lại trang chủ</a>
     <%-- Kiểm tra và hiển thị lỗi từ Servlet --%>
@@ -60,9 +60,14 @@
                                 <fmt:formatNumber value="${item.price}" type="number" pattern="#,##0"/>₫
                             </td>
                             <td>
-                                <input type="number" class="quantity" name="quantity_${item.productID}"
-                                       value="${item.quantity}" min="1" data-price="${item.price}" required>
+                                <div class="quantity-container">
+                                    <button type="button" class="decrease-btn">-</button>
+                                    <input type="number" class="quantity" name="quantity_${item.productID}"
+                                           value="${item.quantity}" min="1" data-price="${item.price}" required>
+                                    <button type="button" class="increase-btn">+</button>
+                                </div>
                             </td>
+
                             <td class="total-price">
                                 <fmt:formatNumber value="${item.price * item.quantity}" type="number" pattern="#,##0"/>₫
                             </td>

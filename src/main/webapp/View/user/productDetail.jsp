@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/productDetail.css">
 </head>
 <body>
+<jsp:include page="${pageContext.request.contextPath}/View/user/menuUser.jsp" />
 <div class="main-container">
     <!-- Container bên trái chứa ảnh sản phẩm -->
     <div class="left-container">
