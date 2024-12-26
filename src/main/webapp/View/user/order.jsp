@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/css/order.css">
 </head>
 <body>
+<jsp:include page="${pageContext.request.contextPath}/View/user/menuUser.jsp" />
 <div class="container">
     <h1>Chi tiết đơn đặt hàng</h1>
 

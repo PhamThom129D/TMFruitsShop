@@ -29,6 +29,9 @@ public class ProductAdminServlet extends HttpServlet {
             case "update":
                 showUpdateProductForm(req, resp);
                 break;
+            case "add":
+                resp.sendRedirect("/View/admin/addProduct.jsp");
+                break;
             case "search":
                 searchProductForm(req, resp);
                 break;

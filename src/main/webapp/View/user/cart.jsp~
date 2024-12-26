@@ -12,7 +12,7 @@
     </script>
 </head>
 <body>
-
+<jsp:include page="${pageContext.request.contextPath}/View/user/menuUser.jsp" />
 <div class="container">
     <a href="/user">Quay lại trang chủ</a>
     <%-- Kiểm tra và hiển thị lỗi từ Servlet --%>
@@ -49,15 +49,8 @@
                         <tr>
                             <td>${status.index + 1}</td>
                             <td>
-<<<<<<< HEAD
-                                <form action="/cart" method="POST">
-                                    <input type="checkbox" name="selected_${item.productID}" value="${item.productID}"
-                                           class="product-checkbox" ${item.checked ? 'checked' : ''} onchange="this.form.submit()" />
-                                </form>
-=======
                                 <input type="checkbox" name="selectedProduct" value="${item.productID}"
                                        class="product-checkbox">
->>>>>>> bdcafcf67fa75b1d22387dc8da9253ed168b55b9
                             </td>
                             <td><img src="${item.urlImage}" alt="image Fruit" style="width: 180px; height: 150px"></td>
                             <td>
@@ -103,20 +96,6 @@
                 </div>
             </footer>
         </form>
-<<<<<<< HEAD
-
-        <footer>
-            <div class="total">
-                <p><strong>Tổng tiền: </strong><span id="totalAmount"></span></p>
-            </div>
-            <div class="checkout">
-                <form action="/cart?action=checkout" method="post">
-                    <button class="checkout-btn">Thanh toán</button>
-                </form>
-            </div>
-        </footer>
-=======
->>>>>>> bdcafcf67fa75b1d22387dc8da9253ed168b55b9
     </c:if>
 </div>
 
