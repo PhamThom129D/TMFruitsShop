@@ -17,7 +17,7 @@
             <input type="text" name="keyword" class="input-search" placeholder="Nhập từ khóa tìm kiếm">
             <input type="submit" class="btn" value="Tìm kiếm">
         </form>
-        <a href="addProduct.jsp">
+        <a href="/productAdmin?action=showAddProduct">
             <button type="button" class="btn btn-add">Thêm sản phẩm</button>
         </a>
     </div>
