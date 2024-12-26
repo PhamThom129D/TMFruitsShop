@@ -1,126 +1,107 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: helvetica;
-    font-size: 14px;
+body{
+    background-image: url("https://mamnonhoami.edu.vn/wp-content/uploads/2021/07/mau-cua-qua.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
 }
 
-ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-.container {
-    width: 100vw;
-    height: 100vh;
-    display: grid;
-    grid-template: 200px 1fr / 200px  1fr;
-    grid-template-areas:
-    "header main"
-    "menu main"
-}
-
-.header {
-    grid-area: header;
-    background: #e35;
+.container{
     position: relative;
-}
-
-/* Căn giữa các phần tử trong user-info */
-.user-info {
-    justify-content: center; /* Căn giữa theo chiều ngang */
-    align-items: center; /* Căn giữa theo chiều dọc */
-    list-style-type: none; /* Xóa dấu chấm của danh sách */
-}
-
-/* CSS cho các phần tử li để tạo khoảng cách giữa chúng */
-.user-info-item {
-    margin: 10px; /* Thêm khoảng cách đều giữa các li */
-    display: flex; /* Đảm bảo li có thể căn giữa nội dung */
-    align-items: center; /* Căn giữa nội dung của li theo chiều dọc */
-}
-
-/* CSS cho ảnh người dùng */
-.user-avatar {
-    width: 40px; /* Kích thước chiều rộng ảnh */
-    height: 40px; /* Kích thước chiều cao ảnh */
-    border-radius: 50%; /* Làm cho ảnh hình tròn */
-    object-fit: cover; /* Đảm bảo ảnh vừa với khung */
-    border: 2px solid black; /* Thêm viền quanh ảnh */
-}
-
-
-.user-settings {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #ccc;
-}
-
-.user-settings {
-    /*   padding: 10px; */
-    display: grid;
-    grid-template-columns:repeat(3, 1fr);
-    /*   grid-gap: 10px; */
-    /*   padding: 10px; */
-}
-
-.user-settings li {
+    width: 750px;
+    height: 450px;
     text-align: center;
-    background: #000;
+    backdrop-filter: blur(5px);
+    flex-direction: row;
+}
+
+.menu-info{
+    background: linear-gradient(to right, #e3e2e2, #fff);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    background-size: 360px 450px;
+    object-fit: cover;
+    border-radius: 25px 0 0 25px;
+    height: 100%;
+    width: 45%;
+    float: left;
+}
+
+.menu-info img{
+    margin-top: 40px;
+    width: 170px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #323232;
+}
+
+.menu-account a {
+    text-decoration: none;
+}
+
+.menu-info p {
+    font-size: 18px;
+}
+
+.menu-account button {
+    background-image: linear-gradient(315deg, rgba(231, 108, 31, 0.9) 0%, rgba(238, 36, 22, 0.9) 74%);
+    border: 1px solid #323232;
+    color: white;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    width: 200px;
+    height: 35px;
+    background-color: transparent;
+    margin: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.menu-account button:hover {
+    background-image: linear-gradient(315deg, rgba(60, 180, 240, 0.85) 0%, rgba(130, 80, 230, 0.85) 74%);
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.25s ease-in-out;
+}
+
+.menu-manage {
+    background: #FF416C;
+    background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
+    background: linear-gradient(to right, #FF4B2B, #FF416C);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    background-size: 450px 450px;
+    border-radius: 0 25px 25px 0;
+    height: 100%;
+    width: 55%;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.menu-manage a {
+    font-size: 20px;
+}
+.menu-manage button {
+    background-image: linear-gradient(315deg, rgb(0, 255, 190) 0%, rgba(149, 49, 222, 0.9) 74%);
+    border: 1px solid white;
     color: #fff;
-    padding: 10px 5px;
-    cursor: pointer;
-    transition: all 200ms ease-in-out;
+    box-shadow: 0 10px 20px rgb(194, 120, 120);
+    transition: all 0.3s ease;
+    padding: 0;
+    margin: 25px;
+    font-size: 18px;
+    border-radius: 15px;
+    width: 210px;
+    height: 45px;
 }
 
-.user-settings li:hover {
-    background: #fff;
-    color: #000;
-}
-
-.menu {
-    grid-area: menu;
-    background-color: #3ae;
-    /*   padding-top: 30px; */
-    overflow: auto;
-}
-
-.menu ul {
-    /*   padding:5px 10px; */
-    /*   background: #ccc; */
-}
-
-.menu li > span {
-    display: block;
-    /*   color: red; */
-    padding: 10px 0 5px 5px;
-    font-size: 1.1em;
-}
-
-.menu > ul > li {
-    cursor: pointer;
-}
-
-.menu li li {
-    cursor: pointer;
-    /*   margin-left: 10px; */
-    /*   background: #000; */
-    color: #fff;
-    padding: 10px;
-    margin-bottom: 5px;
-    transition: background 500ms ease-in-out;
-}
-
-.menu li li:hover {
-    background: #ccc;
-}
-
-.main {
-    /*   padding: 10px; */
-    grid-area: main;
-    background-color: #ae9;
-    position: relative;
+.menu-manage button:hover {
+    background-image: linear-gradient(315deg, rgb(79, 170, 158) 0%, rgb(96, 226, 195) 74%);
+    transform: scale(1.03);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
 }

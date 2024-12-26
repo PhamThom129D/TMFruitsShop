@@ -1,24 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: T14
-  Date: 17/12/2024
-  Time: 3:24 SA
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Add Product</title>
+    <link rel="stylesheet" type="text/css" href="/css/addProduct.css">
 </head>
 <body>
-<%-- Created by IntelliJ IDEA. User: T14 Date: 17/12/2024 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Update Product</title>
-</head>
-<body>
-<form action="/productAdmin?action=add" method="post">
+<form action="ContentProduct" method="post">
+    <h1>Thêm Sản Phẩm</h1>
     <table>
         <tr>
             <td>Ảnh</td>
@@ -67,8 +55,5 @@
         </tr>
     </table>
 </form>
-</body>
-</html>
-
 </body>
 </html>
