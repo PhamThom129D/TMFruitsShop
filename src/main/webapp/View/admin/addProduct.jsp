@@ -5,6 +5,8 @@
     <link rel="stylesheet" type="text/css" href="/css/addProduct.css">
 </head>
 <body>
+<jsp:include page="${pageContext.request.contextPath}/View/admin/sidebar.jsp" />
+
 <form action="/productAdmin?action=add" method="post">
     <h1>Thêm Sản Phẩm</h1>
     <table>

@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/css/manageProduct.css">
 </head>
 <body>
+<jsp:include page="${pageContext.request.contextPath}/View/admin/sidebar.jsp" />
 <div class="container">
     <h1 class="header">Quản lý sản phẩm</h1>
     <div class="actions">
