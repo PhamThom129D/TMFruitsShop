@@ -1,0 +1,119 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Đảm bảo body và html chiếm toàn bộ chiều cao màn hình */
+body, html {
+    height: 90%;
+    margin: 0;
+}
+
+/* Container của bảng giỏ hàng */
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh; /* Chiều cao của container sẽ bằng chiều cao của màn hình */
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Cho phép cuộn dọc nếu nội dung vượt quá chiều cao */
+    box-sizing: border-box; /* Đảm bảo padding không làm container vượt ra ngoài */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cart-table-container {
+    flex-grow: 1; /* Đảm bảo bảng giỏ hàng chiếm tối đa không gian có sẵn */
+    overflow-y: auto;
+    border: 1px solid #678c67; /* Thêm viền cho bảng */
+    margin-bottom: 40px; /* Khoảng cách dưới bảng */
+}
+
+/* Các thẻ table, td, th... */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cart-table th, .cart-table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.cart-table th {
+    background-color: #4CAF50;
+    color: white;
+}
+.quantity-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.quantity-container button {
+    width: 30px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+.quantity-container button:hover {
+    background-color: #e0e0e0;
+}
+
+.quantity-container input.quantity {
+    width: 50px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+/* Footer */
+footer {
+    display: flex;
+    justify-content: space-between; /* Đặt phần tử ở 2 bên trái và phải */
+    background-color: #4CAF50;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 97%;
+    box-sizing: border-box;
+}
+
+/* Tổng tiền bên phải */
+.total {
+    text-align: left;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Nút thanh toán bên trái */
+.checkout {
+    text-align: right;
+    height: 30px;
+}
+
+.checkout-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    height: 40px;
+}
+
