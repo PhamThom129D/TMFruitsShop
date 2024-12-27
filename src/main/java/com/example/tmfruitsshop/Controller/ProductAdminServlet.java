@@ -98,7 +98,6 @@ public class ProductAdminServlet extends HttpServlet {
             int quantity = Integer.parseInt(req.getParameter("quantity"));
             String description = req.getParameter("description");
             String type = req.getParameter("type");
-
             Product product = new Product(productName, quantity, price, urlImage, type, description);
             adminService.addProduct(product);
             loadAllProducts(req, resp);
@@ -117,6 +116,7 @@ public class ProductAdminServlet extends HttpServlet {
             int quantity = Integer.parseInt(req.getParameter("quantity"));
             String description = req.getParameter("description");
             String type = req.getParameter("type");
+
 
             Product product = new Product(id, productName, quantity, price, urlImage, type, description);
             adminService.updateProduct(product);

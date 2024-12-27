@@ -3,17 +3,10 @@ package com.example.tmfruitsshop.Service.Admin;
 import com.example.tmfruitsshop.Model.CartItem;
 import com.example.tmfruitsshop.Model.Product;
 import com.example.tmfruitsshop.Service.ConnectDatabase;
-import com.example.tmfruitsshop.Service.User.Order;
 
-<<<<<<< HEAD
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.sql.*;
-=======
 import javax.servlet.http.HttpSession;
 import java.sql.*;
 import java.time.LocalDate;
->>>>>>> bdcafcf67fa75b1d22387dc8da9253ed168b55b9
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +49,7 @@ public class AdminService implements InAdminService {
     @Override
     public void updateProduct(Product product) {
         String query = "UPDATE products SET productName = ?, stock = ?, price = ?, urlImage = ?, type = ?, description = ? WHERE productID = ?";
+
         try (Connection conn = ConnectDatabase.getConnection();
              PreparedStatement prep = conn.prepareStatement(query)) {
             prep.setString(1, product.getProductName());
@@ -74,6 +68,7 @@ public class AdminService implements InAdminService {
     @Override
     public void addProduct(Product product) {
         String query = "INSERT INTO products(productName, stock, price, urlImage, type, description) VALUES (?,?,?,?,?,?)";
+
         try (Connection conn = ConnectDatabase.getConnection();
              PreparedStatement prep = conn.prepareStatement(query)) {
             prep.setString(1, product.getProductName());
@@ -160,23 +155,6 @@ public class AdminService implements InAdminService {
     }
 
     @Override
-<<<<<<< HEAD
-    public void addOrderAndDetails(int userID, int productID, int quantity) {
-        String query = "{CALL AddOrder(?, ?, ?)}";
-
-        try (Connection conn = ConnectDatabase.getConnection();
-             CallableStatement stmt = conn.prepareCall(query)) {
-
-            stmt.setInt(1, userID);
-            stmt.setInt(2, productID);
-            stmt.setInt(3, quantity);
-            stmt.execute();
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-=======
     public int addOrder(int userID) {
         String query = "INSERT INTO `order`(orderDate, userID) VALUES (?, ?);";
         LocalDateTime now = LocalDateTime.now();
@@ -275,7 +253,6 @@ public class AdminService implements InAdminService {
             throw new RuntimeException(e);
         }
     }
->>>>>>> bdcafcf67fa75b1d22387dc8da9253ed168b55b9
 
     private Product mapResultSetToProduct(ResultSet rs) throws SQLException {
         int productID = rs.getInt("productID");

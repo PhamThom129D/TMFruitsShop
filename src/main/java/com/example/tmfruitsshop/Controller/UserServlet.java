@@ -5,6 +5,7 @@ import com.example.tmfruitsshop.Model.Product;
 import com.example.tmfruitsshop.Model.User;
 import com.example.tmfruitsshop.Service.Admin.AdminService;
 import com.example.tmfruitsshop.Service.Admin.InAdminService;
+import com.example.tmfruitsshop.Service.User.Order;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -48,12 +49,34 @@ public class UserServlet extends HttpServlet {
                 req.getRequestDispatcher("/View/user/account.jsp").forward(req, resp);
                 break;
             case "showOrderHistory" :
-                req.getRequestDispatcher("/View/user/orderHistory.jsp").forward(req, resp);
+                showOrderHistory(req, resp);
                 break;
             default:
                 loadHomeUser(req, resp);
                 break;
         }
+    }
+
+    private void showOrderHistory(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User user = (User) req.getSession().getAttribute("loggedInUser");
+        List<Order> orderList = adminService.getOrderByUserID(user.getUserID());
+        List<Order> orderList1 = new ArrayList<>();
+        List<Order> orderList2 = new ArrayList<>();
+        List<Order> orderList3 = new ArrayList<>();
+
+        for (Order order : orderList) {
+            if (order.getStatusOrder().equals("Cancel")) {
+                orderList1.add(order);
+            }else if (order.getStatusOrder().equals("Pending")) {
+                orderList2.add(order);
+            } else if (order.getStatusOrder().equals("Paid")) {
+                orderList3.add(order);
+            }
+        }
+        req.setAttribute("pendingOrders", orderList2);
+        req.setAttribute("approvedOrders", orderList3);
+        req.setAttribute("cancelOrders", orderList1);
+        req.getRequestDispatcher("/View/user/orderHistory.jsp").forward(req, resp);
     }
 
     private void cancelOrder(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

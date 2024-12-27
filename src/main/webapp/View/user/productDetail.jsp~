@@ -24,7 +24,7 @@
         <div class="product-details">
             <form action="/cart?action=addToCart&id=${product.productID}" method="post">
                 <h1 class="product-name">${product.productName}</h1>
-                <div style="height: 5px;background-color: #4CAF50;margin: 15px 0 15px 0"></div>
+                <div style="height: 5px;background-color: #4CAF50"></div>
                 <p class="product-price">Giá: <fmt:formatNumber value="${product.price}" type="number" pattern="#,###"/>
                     đ</p>
                 <p class="product-unit">

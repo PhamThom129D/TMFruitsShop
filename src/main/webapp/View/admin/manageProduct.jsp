@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -41,7 +42,7 @@
                     <td>${status.index + 1}</td>
                     <td><img src="${product.urlImage}" class="product-image" alt="image"></td>
                     <td>${product.productName}</td>
-                    <td>${product.price}</td>
+                    <td><fmt:formatNumber value="${product.price}" type="number" pattern="#,##0"/>đ</td>
                     <td>
                         <c:if test="${product.quantity == 0}">
                             <span style="color: red">Hết hàng</span>
