@@ -39,7 +39,7 @@ public class AdminServlet extends HttpServlet {
                 resp.sendRedirect("View/admin/manageOrder.jsp");
                 break;
             default:
-                resp.sendRedirect("View/admin/homeAdmin.jsp");
+                showProductForm(req, resp);
                 break;
         }
     }

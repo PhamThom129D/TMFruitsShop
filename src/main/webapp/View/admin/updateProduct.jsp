@@ -5,9 +5,11 @@
     <link rel="stylesheet" type="text/css" href="/css/addProduct.css">
 </head>
 <body>
+<jsp:include page="${pageContext.request.contextPath}/View/admin/sidebar.jsp" />
+
 <form action="/productAdmin?action=update" method="post">
     <input type="hidden" name="id" value="${product.productID}">
-    <img src="${product.urlImage}" style="height: 120px ; width: 150px" alt="image Fruit">
+    <img src="${product.urlImage}" style="height: 180px ; width: 180px ; margin-left: 215px"  alt="image Fruit">
     <table>
         <tr>
             <td>Ảnh</td>
@@ -20,7 +22,7 @@
         </tr>
 
         <tr>
-            <td>Gía</td>
+            <td>Giá</td>
             <td><input type="text" name="price" value="${product.price}"></td>
         </tr>
 
@@ -49,7 +51,7 @@
 
         <tr>
             <td></td>
-            <td><input type="submit" value="Update"></td>
+            <td><input type="submit" value="Sửa sản phẩm"></td>
         </tr>
     </table>
 </form>
