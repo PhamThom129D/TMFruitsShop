@@ -19,7 +19,7 @@
         </tr>
 
         <tr>
-            <td>Gía</td>
+            <td>Gíá</td>
             <td><input type="text" name="price"></td>
         </tr>
 
@@ -32,11 +32,8 @@
             <td>Loại sản phẩm</td>
             <td>
                 <select name="type">
-                    <option value="Dưa">Dưa</option>
-                    <option value="Nho">Nho</option>
-                    <option value="Táo">Táo</option>
-                    <option value="Xoài">Xoài</option>
-                    <option value="Cam">Cam</option>
+                    <option value="Hoa quả">Hoa Quả</option>
+                    <option value="Rau củ">Rau Củ</option>
                     <option value="Combo">Combo</option>
                 </select>
             </td>
@@ -51,7 +48,7 @@
 
         <tr>
             <td></td>
-            <td><input type="submit" value="Add"></td>
+            <td><input type="submit" value="Thêm sản phẩm"></td>
         </tr>
     </table>
 </form>

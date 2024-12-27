@@ -48,14 +48,14 @@ document.addEventListener('DOMContentLoaded', function () {
             const currentValue = parseInt(input.value, 10);
             if (currentValue > parseInt(input.min, 10)) {
                 input.value = currentValue - 1;
-                input.dispatchEvent(new Event('input')); // Trigger input event to update the total amount
+                input.dispatchEvent(new Event('input'));
             }
         }
 
         if (target.classList.contains('increase-btn')) {
             const input = target.previousElementSibling;
             input.value = parseInt(input.value, 10) + 1;
-            input.dispatchEvent(new Event('input')); // Trigger input event to update the total amount
+            input.dispatchEvent(new Event('input'));
         }
     });
 });

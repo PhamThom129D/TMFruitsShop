@@ -3,6 +3,7 @@ package com.example.tmfruitsshop.Service.Admin;
 import com.example.tmfruitsshop.Model.CartItem;
 import com.example.tmfruitsshop.Model.Product;
 import com.example.tmfruitsshop.Service.ConnectDatabase;
+import com.example.tmfruitsshop.Service.User.Order;
 
 import javax.servlet.http.HttpSession;
 import java.sql.*;
@@ -49,6 +50,7 @@ public class AdminService implements InAdminService {
     @Override
     public void updateProduct(Product product) {
         String query = "UPDATE products SET productName = ?, stock = ?, price = ?, urlImage = ?, type = ?, description = ? WHERE productID = ?";
+
         try (Connection conn = ConnectDatabase.getConnection();
              PreparedStatement prep = conn.prepareStatement(query)) {
             prep.setString(1, product.getProductName());
@@ -67,6 +69,7 @@ public class AdminService implements InAdminService {
     @Override
     public void addProduct(Product product) {
         String query = "INSERT INTO products(productName, stock, price, urlImage, type, description) VALUES (?,?,?,?,?,?)";
+
         try (Connection conn = ConnectDatabase.getConnection();
              PreparedStatement prep = conn.prepareStatement(query)) {
             prep.setString(1, product.getProductName());
@@ -250,6 +253,24 @@ public class AdminService implements InAdminService {
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public List<Order> getOrderByUserID(int userID) {
+        String query = "SELECT * FROM `order` WHERE userID = ?";
+        List<Order> orders = new ArrayList<>();
+        try (Connection conn = ConnectDatabase.getConnection();
+             PreparedStatement prep = conn.prepareStatement(query)) {
+            prep.setInt(1, userID);
+            ResultSet rs = prep.executeQuery();
+            while (rs.next()) {
+                Order order = new Order(rs.getInt("orderID"), rs.getTimestamp("orderDate"), rs.getString("statusOrder"));
+                orders.add(order);
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return orders;
     }
 
     private Product mapResultSetToProduct(ResultSet rs) throws SQLException {

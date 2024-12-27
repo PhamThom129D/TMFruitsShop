@@ -31,6 +31,7 @@
             <div class="user-box">
                 <input type="password" id="rePassword" name="rePassword" required>
                 <label>Nhập lại mật khẩu</label><br>
+
                 <span id="rePassword-message" class="error-message"></span>
             </div>
             <button type="button" onclick="nextStep()">Tiếp tục</button>

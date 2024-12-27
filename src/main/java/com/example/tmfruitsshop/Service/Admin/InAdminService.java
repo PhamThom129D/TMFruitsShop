@@ -2,6 +2,7 @@ package com.example.tmfruitsshop.Service.Admin;
 
 import com.example.tmfruitsshop.Model.CartItem;
 import com.example.tmfruitsshop.Model.Product;
+import com.example.tmfruitsshop.Service.User.Order;
 
 import java.util.List;
 
@@ -28,4 +29,5 @@ public interface InAdminService {
 
     void updateStatusOrder(int orderID,String status,String paymentMethod);
     void addInvoice(int orderID,double total);
+    List<Order> getOrderByUserID(int userID);
 }
