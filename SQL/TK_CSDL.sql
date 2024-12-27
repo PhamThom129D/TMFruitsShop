@@ -134,5 +134,4 @@ VALUES ('Táo', 50000, 'Táo tươi ngon, mọng nước, giàu dinh dưỡng, h
         'Combo', 70, 'https://shophoaqua.vn/public/media/file/files/lang-trai-cay/503.jpg'),
        ('Combo Hoa Quả Tặng 9', 150000, 'Hộp quà trái cây với các loại quả ngon, chất lượng và đóng gói tinh tế',
         'Combo', 50, 'https://shophoaqua.vn/public/media/file/files/lang-trai-cay/550.jpg'),
-       ('Combo Hoa Quả Tặng 10', 175000,
-        'Sự kết hợp hoàn hảo giữa hình thức và chất lượng, phù hợp làm quà tặng cao cấp', 'Combo', 30);
+       ('Combo Hoa Quả Tặng 10', 175000, 'Sự kết hợp hoàn hảo giữa hình thức và chất lượng, phù hợp làm quà tặng cao cấp', 'Combo', 30);

@@ -22,7 +22,7 @@ import java.util.List;
 import static com.example.tmfruitsshop.Controller.CartServlet.updateCartItemCount;
 
 @WebServlet(value = "/user")
-public class UserServlet extends HttpServlet {
+public class    UserServlet extends HttpServlet {
     private static InAdminService adminService = new AdminService();
 
     @Override

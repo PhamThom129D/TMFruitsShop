@@ -2,10 +2,10 @@
 <html>
 <head>
     <title>Add Product</title>
-    <link rel="stylesheet" type="text/css" href="/css/addProduct.css">
+    <link rel="stylesheet" href="/css/addProduct.css">
 </head>
 <body>
-<form action="ContentProduct" method="post">
+<form action="/productAdmin" method="post">
     <h1>Thêm Sản Phẩm</h1>
     <table>
         <tr>
@@ -19,7 +19,7 @@
         </tr>
 
         <tr>
-            <td>Gía</td>
+            <td>Giá</td>
             <td><input type="text" name="price"></td>
         </tr>
 
@@ -32,12 +32,9 @@
             <td>Loại sản phẩm</td>
             <td>
                 <select name="type">
-                    <option value="Dưa">Dưa</option>
-                    <option value="Nho">Nho</option>
-                    <option value="Táo">Táo</option>
-                    <option value="Xoài">Xoài</option>
-                    <option value="Cam">Cam</option>
-                    <option value="Combo">Combo</option>
+                    <option value="fruits">Trái cây</option>
+                    <option value="vegetables">Rau củ</option>
+                    <option value="combo">Combo</option>
                 </select>
             </td>
         </tr>
