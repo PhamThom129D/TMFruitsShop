@@ -84,6 +84,7 @@ public class CartServlet extends HttpServlet {
 
     private static void addProductToCart(HttpServletRequest req, HttpServletResponse resp, List<CartItem> cart, int productID, int quantityBuy) throws ServletException, IOException {
         Product product = adminService.getProductById(productID);
+        int maxQuantity = product.getQuantity();
         boolean productExists = false;
 
         for (CartItem item : cart) {
@@ -94,7 +95,7 @@ public class CartServlet extends HttpServlet {
             }
         }
         if (!productExists) {
-            CartItem newItem = new CartItem(productID, product.getUrlImage(), product.getProductName(), product.getPrice(), quantityBuy);
+            CartItem newItem = new CartItem(productID, product.getUrlImage(), product.getProductName(), product.getPrice(), quantityBuy,maxQuantity);
             cart.add(newItem);
         }
         req.getSession().setAttribute("cart", cart);

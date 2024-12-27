@@ -110,7 +110,7 @@ footer {
 
 .checkout-btn {
     background-color: #4CAF50;
-    padding-top: 19px;
+    padding-top: 10px;
     color: white;
     border: none;
     cursor: pointer;

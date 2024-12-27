@@ -64,7 +64,7 @@
                         <a href="/user?action=showAccount">Thông tin tài khoản</a>
                         <a href="/user?action=showOrderHistory">Lịch sử mua hàng</a>
                         <a href="/login?action=logout">
-                            <button type="submit" onclick="confirmLogout()" style="background-color: transparent; border: none;font-size: 18px">Đăng xuất
+                            <button type="submit" onclick="confirmLogout()" style="background-color: transparent; border: none;">Đăng xuất
                             </button>
                         </a>
                     </div>

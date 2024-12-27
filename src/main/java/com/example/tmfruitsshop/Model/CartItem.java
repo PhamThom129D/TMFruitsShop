@@ -7,6 +7,7 @@ public class CartItem {
     private double price;
     private int quantity;
     private boolean isChecked;
+    private int maxQuantity;
 
     public CartItem(int productID, String urlImage, String productName, double price, int quantity) {
         this.productID = productID;
@@ -21,6 +22,15 @@ public class CartItem {
     this.price = price;
     this.quantity = quantity;
     this.urlImage = urlImage;
+    }
+
+    public CartItem(int productID, String urlImage, String productName, int price, int quantityBuy, int maxQuantity) {
+        this.productID = productID;
+        this.urlImage = urlImage;
+        this.productName = productName;
+        this.price = price;
+        this.quantity = quantityBuy;
+        this.maxQuantity = maxQuantity;
     }
 
     public boolean isChecked() {

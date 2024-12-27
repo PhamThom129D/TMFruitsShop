@@ -5,7 +5,7 @@ import com.example.tmfruitsshop.Model.Product;
 import com.example.tmfruitsshop.Model.User;
 import com.example.tmfruitsshop.Service.Admin.AdminService;
 import com.example.tmfruitsshop.Service.Admin.InAdminService;
-import com.example.tmfruitsshop.Service.User.Order;
+import com.example.tmfruitsshop.Model.Order;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -194,7 +193,7 @@ public class UserServlet extends HttpServlet {
         } else {
             List<Product> products = adminService.searchProductWithName(keyword);
             if (products.isEmpty()) {
-                req.setAttribute("message", "Khong tim thay san pham nao voi tu khoa: " + keyword);
+                req.setAttribute("message", "Không tìm thấy sản phẩm với từ khóa : " + keyword);
             } else {
                 req.setAttribute("products", products);
             }
