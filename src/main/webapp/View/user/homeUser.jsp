@@ -16,6 +16,10 @@
 <%-- --%>
 <!-- Main Content -->
 <main>
+    <c:if test="${not empty error}">
+        alert("Vui lòng đăng nhập để mua hàng");
+        window.location.href = "/login";
+    </c:if>
     <div class="container">
         <div class="product-list">
             <c:forEach items="${products}" var="product">

@@ -3,21 +3,21 @@ package com.example.tmfruitsshop.Service.Admin;
 import com.example.tmfruitsshop.Model.CartItem;
 import com.example.tmfruitsshop.Model.Product;
 import com.example.tmfruitsshop.Service.ConnectDatabase;
-import com.example.tmfruitsshop.Service.User.Order;
+import com.example.tmfruitsshop.Model.Order;
 
-import javax.servlet.http.HttpSession;
 import java.sql.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class AdminService implements InAdminService {
     @Override
     public List<Product> getAllProduct() {
         List<Product> productList = new ArrayList<>();
-        String query = "SELECT * FROM products";
+        String query = "SELECT * FROM products ORDER BY productID DESC";
         try (Connection conn = ConnectDatabase.getConnection();
              Statement stm = conn.createStatement()) {
             ResultSet rs = stm.executeQuery(query);
@@ -255,23 +255,69 @@ public class AdminService implements InAdminService {
         }
     }
 
-    @Override
     public List<Order> getOrderByUserID(int userID) {
-        String query = "SELECT * FROM `order` WHERE userID = ?";
-        List<Order> orders = new ArrayList<>();
+        String query = "SELECT \n" +
+                "    o.orderID,\n" +
+                "    o.orderDate,\n" +
+                "    o.statusOrder,\n" +
+                "    u.username,\n" +
+                "    u.address,\n" +
+                "    o.paymentMethod,\n" +
+                "    p.productID,\n" +
+                "    p.productName,\n" +
+                "    po.quantity,\n" +
+                "    p.price,\n" +
+                "    p.urlImage,\n" +
+                "    p.type,\n" +
+                "    p.description\n" +
+                "FROM `Order` o\n" +
+                "JOIN user u ON o.userID = u.userID\n" +
+                "JOIN Products_Order po ON o.orderID = po.orderID\n" +
+                "JOIN products p ON po.productID = p.productID\n" +
+                "WHERE u.userID = ?";
+        List<Order> orders;
         try (Connection conn = ConnectDatabase.getConnection();
              PreparedStatement prep = conn.prepareStatement(query)) {
             prep.setInt(1, userID);
             ResultSet rs = prep.executeQuery();
+            Map<Integer, Order> orderMap = new HashMap<>();
+
             while (rs.next()) {
-                Order order = new Order(rs.getInt("orderID"), rs.getTimestamp("orderDate"), rs.getString("statusOrder"));
-                orders.add(order);
+                int orderID = rs.getInt("orderID");
+                Order order = orderMap.get(orderID);
+
+                if (order == null) {
+                    order = new Order();
+                    order.setOrderID(orderID);
+                    order.setOrderDate(rs.getTimestamp("orderDate"));
+                    order.setStatusOrder(rs.getString("statusOrder"));
+                    order.setUsername(rs.getString("username"));
+                    order.setAddress(rs.getString("address"));
+                    order.setPaymentMethod(rs.getString("paymentMethod"));
+                    order.setProductList(new ArrayList<>());
+                    orderMap.put(orderID, order);
+                }
+
+                Product product = new Product();
+                product.setProductID(rs.getInt("productID"));
+                product.setProductName(rs.getString("productName"));
+                product.setQuantity(rs.getInt("quantity"));
+                product.setPrice(rs.getInt("price"));
+                product.setUrlImage(rs.getString("urlImage"));
+                product.setType(rs.getString("type"));
+                product.setDescription(rs.getString("description"));
+
+                order.getProductList().add(product);
             }
+
+            orders = new ArrayList<>(orderMap.values());
+
         } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error fetching orders for userID " + userID, e);
         }
         return orders;
     }
+
 
     private Product mapResultSetToProduct(ResultSet rs) throws SQLException {
         int productID = rs.getInt("productID");

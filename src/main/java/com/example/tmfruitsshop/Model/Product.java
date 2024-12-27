@@ -18,7 +18,7 @@ public class Product {
         this.type = type;
         this.description = description;
     }
-
+public Product(){}
     public Product(String productName, int quantity, int price, String urlImage, String type, String description) {
         this.productName = productName;
         this.quantity = quantity;

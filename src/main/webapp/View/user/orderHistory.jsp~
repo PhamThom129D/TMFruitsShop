@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Lịch sử mua hàng</title>
-    <link rel="stylesheet" href="/css/orderHistory.css">
+    <link rel="stylesheet" href="path/to/order-history.css">
 </head>
 <body>
 <h1>Lịch sử mua hàng</h1>

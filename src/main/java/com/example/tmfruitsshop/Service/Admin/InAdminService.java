@@ -2,7 +2,7 @@ package com.example.tmfruitsshop.Service.Admin;
 
 import com.example.tmfruitsshop.Model.CartItem;
 import com.example.tmfruitsshop.Model.Product;
-import com.example.tmfruitsshop.Service.User.Order;
+import com.example.tmfruitsshop.Model.Order;
 
 import java.util.List;
 

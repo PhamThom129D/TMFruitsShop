@@ -20,7 +20,10 @@
         </script>
     </c:if>
     <c:if test="${empty cart}">
-        <p>Giỏ hàng của bạn đang trống. Hãy thêm sản phẩm vào giỏ hàng!</p>
+        <script>
+            alert("Giỏ hàng của bạn đang trống. Hãy thêm sản phẩm vào giỏ hàng!");
+            window.location.href = "/user";
+        </script>
     </c:if>
 
     <c:if test="${not empty cart}">
@@ -61,7 +64,7 @@
                                 <div class="quantity-container">
                                     <button type="button" class="decrease-btn">-</button>
                                     <input type="number" class="quantity" name="quantity_${item.productID}"
-                                           value="${item.quantity}" min="1" data-price="${item.price}" required>
+                                           value="${item.quantity}" min="1" max="${item.quantity}" data-price="${item.price}" required>
                                     <button type="button" class="increase-btn">+</button>
                                 </div>
                             </td>
@@ -90,7 +93,7 @@
                     <p><strong>Tổng tiền: </strong><span id="totalAmount"></span></p>
                 </div>
                 <div class="checkout">
-                    <button class="checkout-btn" type="submit">Thanh toán</button>
+                    <button class="checkout-btn" type="button" onclick="return confirmOrder()">Đặt hàng</button>
                 </div>
             </footer>
         </form>
@@ -98,4 +101,14 @@
 </div>
 
 </body>
+<script>
+    function confirmOrder() {
+        const confirmation = confirm("Bạn có chắc chắn muốn đặt hàng không?");
+        if (confirmation) {
+            document.getElementById("cartForm").submit();
+        }
+        return false;
+    }
+</script>
+
 </html>
